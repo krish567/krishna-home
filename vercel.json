@@ -1,6 +1,9 @@
 {
+  "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
-  "framework": null
+  "routes": [
+    { "src": "/(.*)", "dest": "/$1", "status": 200 }
+  ]
 }
