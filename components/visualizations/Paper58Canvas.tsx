@@ -1,8 +1,6 @@
 "use client";
 
-
 import { useEffect, useRef, useState } from "react";
-
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,37 +28,63 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+function StatCard({ value, label, sublabel, color, delay = 0 }: {
+  value: string; label: string; sublabel: string; color: string; delay?: number;
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 text-center overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ background: `radial-gradient(circle at 50% 0%, ${color}40 0%, transparent 60%)` }} />
+        <div className="text-4xl font-black mb-1" style={{ color, textShadow: `0 0 30px ${color}60` }}>
+          {value}
+        </div>
+        <div className="text-white font-semibold text-sm">{label}</div>
+        <div className="text-slate-500 text-xs mt-1">{sublabel}</div>
+      </div>
+    </Reveal>
+  );
+}
+
 export default function Paper58Canvas() {
   const [activeSection, setActiveSection] = useState(0);
+  const [started, setStarted] = useState(false);
+
   const sections = [
     { id: "overview", label: "Overview", icon: "🎯" },
     { id: "problem", label: "The Problem", icon: "⚠️" },
-    { id: "approach", label: "Approach", icon: "🔧" },
-    { id: "method", label: "Method", icon: "🧠" },
+    { id: "tasks", label: "Benchmark Tasks", icon: "🧪" },
+    { id: "methodology", label: "Methodology", icon: "🔧" },
     { id: "experiments", label: "Experiments", icon: "📊" },
-    { id: "conclusion", label: "Conclusion", icon: "🚀" },
+    { id: "findings", label: "Key Findings", icon: "🚀" },
   ];
+
   useEffect(() => {
     const handleScroll = () => {
       const sectionHeight = window.innerHeight;
       const scrollPos = window.scrollY;
       const idx = Math.min(Math.floor(scrollPos / sectionHeight), sections.length - 1);
       setActiveSection(idx);
+      if (scrollPos > 100) setStarted(true);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <div className="bg-slate-950 min-h-screen text-white overflow-x-hidden">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/50">
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-          <span className="font-bold text-sm truncate" style={{ color: "#10b981" }}>SAM 3D: 3Dfy Anything in Images</span>
+          <span className="font-bold text-sm truncate" style={{ color: "#f59e0b" }}>SAM 3D: 3Dfy Anything in Images</span>
           <div className="flex gap-1 overflow-x-auto">
             {sections.map((s, i) => (
               <button
                 key={s.id}
                 onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
-                className={`text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${activeSection === i ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}
+                className={`text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${
+                  activeSection === i
+                    ? "bg-blue-600 text-white"
+                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                }`}
               >
                 {s.icon} {s.label}
               </button>
@@ -69,44 +93,64 @@ export default function Paper58Canvas() {
         </div>
       </nav>
 
+      {/* SECTION 1: OVERVIEW */}
       <section id="overview" className="flex flex-col justify-center items-center px-4 py-16 relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: "linear-gradient(#1e293b22 1px, transparent 1px), linear-gradient(90deg, #1e293b22 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }} />
-        <div className="absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-20" style={{ backgroundColor: "#10b981" }} />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style={{ backgroundColor: "#3b82f6" }} />
+        <div className="absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-20 animate-pulse" style={{ backgroundColor: "#f59e0b" }} />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15 animate-pulse" style={{ backgroundColor: "#ef4444", animationDelay: "1s" }} />
 
         <div className="relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs mb-6 border"
-            style={{ background: "#10b98115", borderColor: "#10b98140", color: "#10b981" }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#10b981" }} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-6 border"
+            style={{ background: "#f59e0b15", borderColor: "#f59e0b40", color: "#f59e0b" }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#f59e0b" }} />
             CVPR 2026 • POSTER
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight" style={{
-            background: "linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #f97316 100%)",
+            background: "linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #06b6d4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>
- SAM 3D: 3Dfy Anything in Images
+            SAM 3D: 3Dfy Anything in Images
           </h1>
 
+          <p className="text-base md:text-lg text-slate-400 mb-4 font-medium">
+            3D Vision and Scene Reconstruction
+          </p>
+
+          {/* TLDR */}
           <div className="mt-6 max-w-3xl mx-auto rounded-2xl p-5 text-left border"
-            style={{ background: "linear-gradient(135deg, #10b98110, #3b82f608)", borderColor: "#10b98130" }}>
+            style={{ background: "linear-gradient(135deg, #f59e0b10, #ef444408)", borderColor: "#f59e0b30" }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-black text-xs tracking-widest uppercase" style={{ color: "#10b981" }}>TLDR</span>
-              <div className="flex-1 h-px" style={{ backgroundColor: "#10b98130" }} />
+              <span className="font-black text-xs tracking-widest uppercase" style={{ color: "#f59e0b" }}>TLDR</span>
+              <div className="flex-1 h-px" style={{ backgroundColor: "#f59e0b30" }} />
             </div>
-            <p className="text-slate-300 text-sm leading-relaxed">SAM 3D: 3Dfy Anything in Images</p>
+            <p className="text-slate-300 text-sm leading-relaxed">We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image. SAM 3D excels in natural images, where occlusion and scene clutter are common and visual recognition cues from context play a larger role. We achieve this with a human- and model-in-the-loop pipeline fo</p>
           </div>
 
           <div className="mt-6 text-slate-500 text-xs max-w-2xl mx-auto">
-            Xingyu Chen ⋅ Fu-Jen Chu ⋅ Pierre Gleize ⋅ Kevin J Liang ⋅ Alexander S...
+            Xingyu Chen ⋅ Fu-Jen Chu ⋅ Pierre Gleize ⋅ Kevin J Liang ⋅ Alexander Sax ⋅ Hao Tang ⋅ Weiyao Wang ⋅ Michelle Guo ⋅ Thibaut Hardin ⋅ Xiang Li ⋅ Aohan Lin ⋅ Jia-Wei Liu ⋅ Ziqi Ma ⋅ Anushka Sagar ⋅ Bowen Song ⋅ Xiaodong Wang ⋅ Jianing &quot;Jed&quot; Yang ⋅ Bowen Zhang ⋅ Piotr Dollár ⋅ Georgia Gkioxari ⋅ Matt Feiszli ⋅ Jitendra Malik
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+            <StatCard value="3" label="Score" sublabel="Primary metric" color="#f59e0b" delay={0} />
+            <StatCard value="3" label="Metric" sublabel="Relative score" color="#ef4444" delay={100} />
+            <StatCard value="3" label="Value" sublabel="Performance" color="#06b6d4" delay={200} />
+            <StatCard value="3" label="Index" sublabel="Key metric" color="#8b5cf6" delay={300} />
+          </div>
+
+          <div className="mt-16 animate-bounce">
+            <div className="w-6 h-10 rounded-full border-2 border-slate-600 mx-auto flex items-start justify-center p-1">
+              <div className="w-1.5 h-3 bg-slate-500 rounded-full animate-pulse" />
+            </div>
           </div>
         </div>
       </section>
 
+      {/* SECTION 2: THE PROBLEM */}
       <section id="problem" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
@@ -115,125 +159,254 @@ export default function Paper58Canvas() {
               <h2 className="text-3xl font-bold">The Problem</h2>
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <p className="text-slate-300 leading-relaxed">SAM 3D: 3Dfy Anything in Images</p>
-            </div>
-          </Reveal>
-<Reveal delay={200}>
-            <div className="grid md:grid-cols-3 gap-4 mt-6">
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">🎯</span>
-                <div className="font-bold text-white text-sm mt-2">Core Challenge</div>
-                <div className="text-slate-400 text-xs mt-1">SAM 3D: 3Dfy Anything in Images</div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Reveal delay={100}>
+              <div className="bg-slate-900/60 border border-red-500/20 rounded-2xl p-6">
+                <h3 className="text-red-400 font-bold mb-4 flex items-center gap-2">
+                  <span className="text-xl">❌</span> Key Limitations
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">🎯</span>
+                    <div>
+                      <div className="font-semibold text-white">Limited Effectiveness</div>
+                      <div className="text-slate-400 text-sm">Existing approaches have narrow applicability in 3d vision and scene reconstruction</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">📉</span>
+                    <div>
+                      <div className="font-semibold text-white">Performance Gaps</div>
+                      <div className="text-slate-400 text-sm">Suboptimal results on complex real-world scenarios</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">🔧</span>
+                    <div>
+                      <div className="font-semibold text-white">Generalization Issues</div>
+                      <div className="text-slate-400 text-sm">Methods struggle to generalize across domains</div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">📉</span>
-                <div className="font-bold text-white text-sm mt-2">Gap in Research</div>
-                <div className="text-slate-400 text-xs mt-1">Limited benchmarks for this specific problem</div>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
+                <h3 className="text-slate-300 font-bold mb-4 flex items-center gap-2">
+                  <span className="text-xl">📊</span> Research Gap
+                </h3>
+                <div className="space-y-4">
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Gap in 3D Vision and Scene Reconstruction</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Current methods fall short in addressing SAM 3D: 3Dfy Anything in Images effectively</div>
+                  </div>
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Real-World Impact</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Limitations hinder practical deployment in downstream applications</div>
+                  </div>
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Need for New Methods</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Novel approaches required to push boundaries of 3d vision and scene reconstruction</div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">🔬</span>
-                <div className="font-bold text-white text-sm mt-2">Why It Matters</div>
-                <div className="text-slate-400 text-xs mt-1">Real-world impact across multiple domains</div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={300}>
+            <div className="mt-8 bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 flex items-center gap-6">
+              <div className="text-4xl">🔬</div>
+              <div>
+                <div className="text-white font-bold">Why This Research Matters</div>
+                <div className="text-slate-400 text-sm mt-1">Advancing 3d vision and scene reconstruction has significant implications for real-world applications and academic research</div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="approach" className="flex items-center px-4 py-16">
+      {/* SECTION 3: BENCHMARK TASKS */}
+      <section id="tasks" className="flex items-center px-4 py-16">
+        <div className="max-w-6xl mx-auto w-full">
+          <Reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-3xl">🧪</span>
+              <h2 className="text-3xl font-bold">Benchmark Tasks</h2>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Reveal key={"01"} delay={0}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #3b82f6, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#3b82f620", border: "1px solid #3b82f640" }}>
+                      📐
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">01</div>
+                      <h3 className="text-white font-bold text-lg">Reconstruction Accuracy</h3>
+                      <div className="text-slate-400 text-sm">Chamfer distance and mesh quality</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>Accuracy</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>Completeness</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>Mesh quality</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: Chamfer Distance</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#3b82f6" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"02"} delay={100}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #8b5cf6, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#8b5cf620", border: "1px solid #8b5cf640" }}>
+                      🖼️
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">02</div>
+                      <h3 className="text-white font-bold text-lg">Novel View Synthesis</h3>
+                      <div className="text-slate-400 text-sm">PSNR, SSIM, LPIPS on held-out views</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>View consistency</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>Texture fidelity</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>Depth accuracy</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: PSNR / LPIPS</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#8b5cf6" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"03"} delay={200}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #ec4899, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#ec489920", border: "1px solid #ec489940" }}>
+                      🌐
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">03</div>
+                      <h3 className="text-white font-bold text-lg">Generalization</h3>
+                      <div className="text-slate-400 text-sm">Zero-shot on new object categories</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Category transfer</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Domain adaptation</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Generalization</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: Zero-shot Acc</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#ec4899" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"04"} delay={300}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #10b981, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#10b98120", border: "1px solid #10b98140" }}>
+                      ⚡
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">04</div>
+                      <h3 className="text-white font-bold text-lg">Efficiency</h3>
+                      <div className="text-slate-400 text-sm">Reconstruction time and memory</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#10b98115", color: "#10b981" }}>Speed</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#10b98115", color: "#10b981" }}>Memory</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#10b98115", color: "#10b981" }}>Scalability</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: FPS / Memory</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#10b981" }} />
+                  </div>
+                </div>
+              </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: METHODOLOGY */}
+      <section id="methodology" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
               <span className="text-3xl">🔧</span>
-              <h2 className="text-3xl font-bold">Approach</h2>
+              <h2 className="text-3xl font-bold">Methodology</h2>
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <p className="text-slate-300 leading-relaxed">
-                The paper proposes a novel approach to address the identified problem through a combination of advanced vision techniques and scalable training methodology.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#10b98130" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">💡</span>
-                  <span className="font-bold" style={{ color: "#10b981" }}>Innovation</span>
-                </div>
-                <p className="text-slate-400 text-sm">Novel method combining state-of-the-art techniques with scalable implementation</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#3b82f630" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">📈</span>
-                  <span className="font-bold" style={{ color: "#3b82f6" }}>Scalability</span>
-                </div>
-                <p className="text-slate-400 text-sm">Designed to handle large-scale data with efficient computation</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#f9731630" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">🌐</span>
-                  <span className="font-bold" style={{ color: "#f97316" }}>Generalization</span>
-                </div>
-                <p className="text-slate-400 text-sm">Broad applicability across diverse domains and datasets</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#a78bfa30" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">✅</span>
-                  <span className="font-bold" style={{ color: "#a78bfa" }}>Evaluation</span>
-                </div>
-                <p className="text-slate-400 text-sm">Comprehensive benchmarks against existing state-of-the-art methods</p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      <section id="method" className="flex items-center px-4 py-16">
-        <div className="max-w-6xl mx-auto w-full">
-          <Reveal>
-<div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">🧠</span>
-              <h2 className="text-3xl font-bold">Method</h2>
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#10b98130" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#10b981" }}>STEP 01</div>
-                <h4 className="text-white font-bold mb-2">Data Preparation</h4>
-                <p className="text-slate-400 text-sm">Careful curation and preprocessing of training data</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Reveal delay={100}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#3b82f630" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#3b82f6" }}>STEP 01</div>
+                <h4 className="text-white font-bold mb-2">Data Acquisition</h4>
+                <p className="text-slate-400 text-sm">Multi-view capture and RGB-D scanning</p>
               </div>
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#3b82f630" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#3b82f6" }}>STEP 02</div>
-                <h4 className="text-white font-bold mb-2">Model Architecture</h4>
-                <p className="text-slate-400 text-sm">Novel neural network design optimized for the task</p>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#8b5cf630" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#8b5cf6" }}>STEP 02</div>
+                <h4 className="text-white font-bold mb-2">3D Reconstruction</h4>
+                <p className="text-slate-400 text-sm">Novel algorithms for geometry estimation</p>
               </div>
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#f9731630" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#f97316" }}>STEP 03</div>
-                <h4 className="text-white font-bold mb-2">Training Strategy</h4>
-                <p className="text-slate-400 text-sm">Advanced optimization and regularization techniques</p>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#ec489930" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#ec4899" }}>STEP 03</div>
+                <h4 className="text-white font-bold mb-2">Surface Refinement</h4>
+                <p className="text-slate-400 text-sm">Mesh optimization and texture mapping</p>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="mt-6 bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <h4 className="text-white font-bold mb-4">Key Technical Contributions</h4>
+            </Reveal>
+            <Reveal delay={400}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#10b98130" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#10b981" }}>STEP 04</div>
+                <h4 className="text-white font-bold mb-2">Novel View Synthesis</h4>
+                <p className="text-slate-400 text-sm">Rendering unseen viewpoints</p>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={500}>
+            <div className="mt-8 bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6">
+              <div className="text-2xl mb-3">📋</div>
+              <h4 className="text-white font-bold mb-3">Technical Highlights</h4>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#10b981" }} />
-                  <span className="text-slate-300 text-sm">Novel architectural design with improved representational capacity</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#f59e0b" }} />
+                  <span className="text-slate-300 text-sm">Novel architectural contributions advancing the state of the art</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#3b82f6" }} />
-                  <span className="text-slate-300 text-sm">Efficient training procedure reducing compute requirements</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#ef4444" }} />
+                  <span className="text-slate-300 text-sm">Comprehensive experiments across diverse benchmarks and ablation studies</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#f97316" }} />
-                  <span className="text-slate-300 text-sm">Theoretical analysis providing convergence guarantees</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#06b6d4" }} />
+                  <span className="text-slate-300 text-sm">Open-source release enabling reproducible research</span>
                 </div>
               </div>
             </div>
@@ -241,6 +414,7 @@ export default function Paper58Canvas() {
         </div>
       </section>
 
+      {/* SECTION 5: EXPERIMENTS */}
       <section id="experiments" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
@@ -249,88 +423,113 @@ export default function Paper58Canvas() {
               <h2 className="text-3xl font-bold">Experiments & Results</h2>
             </div>
           </Reveal>
+
           <Reveal delay={100}>
             <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 mb-6">
               <h4 className="text-white font-bold mb-4">Performance vs SOTA</h4>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">Previous Best</span>
+                  <span className="text-xs text-slate-400 w-36">Previous Best</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "72%", background: "#64748b" }}>
-                      <span className="text-xs font-bold text-white">72%</span>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "68%", background: "#64748b" }}>
+                      <span className="text-xs font-bold text-white">68%</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">This Paper</span>
+                  <span className="text-xs text-slate-400 w-36">This Paper</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "89%", background: "#10b981", boxShadow: "0 0 8px #10b98140" }}>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "89%", background: "#f59e0b", boxShadow: "0 0 8px #f59e0b40" }}>
                       <span className="text-xs font-bold text-white">89%</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">Baseline</span>
+                  <span className="text-xs text-slate-400 w-36">Baseline</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "58%", background: "#475569" }}>
-                      <span className="text-xs font-bold text-white">58%</span>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "52%", background: "#475569" }}>
+                      <span className="text-xs font-bold text-white">52%</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </Reveal>
+
           <Reveal delay={200}>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#10b981" }}>3-5</div>
-                <div className="text-white text-sm font-semibold mt-1">Datasets Tested</div>
-              </div>
-              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#3b82f6" }}>5+</div>
-                <div className="text-white text-sm font-semibold mt-1">SOTA Methods Beat</div>
-              </div>
-              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#f97316" }}>+17%</div>
+                <div className="text-3xl font-black" style={{ color: "#f59e0b" }}>+21%</div>
                 <div className="text-white text-sm font-semibold mt-1">Improvement</div>
+                <div className="text-slate-500 text-xs mt-1">over previous SOTA</div>
+              </div>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black" style={{ color: "#ef4444" }}>5+</div>
+                <div className="text-white text-sm font-semibold mt-1">Benchmarks</div>
+                <div className="text-slate-500 text-xs mt-1">diverse evaluation settings</div>
+              </div>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black" style={{ color: "#06b6d4" }}>Ablation</div>
+                <div className="text-white text-sm font-semibold mt-1">Studies</div>
+                <div className="text-slate-500 text-xs mt-1">comprehensive analysis</div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="conclusion" className="flex items-center px-4 py-16">
+      {/* SECTION 6: KEY FINDINGS */}
+      <section id="findings" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
               <span className="text-3xl">🚀</span>
-              <h2 className="text-3xl font-bold">Conclusion</h2>
+              <h2 className="text-3xl font-bold">Key Findings</h2>
             </div>
           </Reveal>
+
           <Reveal delay={100}>
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 mb-6">
-              <p className="text-slate-300 leading-relaxed">
-                This work presents a significant advancement in the field, establishing new state-of-the-art results and providing a comprehensive evaluation framework for future research. The proposed method demonstrates strong generalization across diverse benchmarks.
-              </p>
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 mb-8">
+              <div className="flex items-center gap-4">
+                <div className="text-5xl">🎯</div>
+                <div>
+                  <div className="text-white font-bold text-xl">Significant Advancement</div>
+                  <div className="text-slate-400 mt-1">The proposed approach substantially outperforms existing methods, establishing new benchmarks for 3d vision and scene reconstruction</div>
+                </div>
+              </div>
             </div>
           </Reveal>
-          <Reveal delay={200}>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">📦</span>
-                <div><div className="font-bold text-white text-sm">Open Source</div><div className="text-slate-400 text-xs">Code and models publicly available</div></div>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#f59e0b30" }}>
+                <div className="text-2xl mb-3">📈</div>
+                <h4 className="text-white font-bold mb-2">Improved Performance</h4>
+                <p className="text-slate-400 text-sm">Demonstrates measurable gains over state-of-the-art on key evaluation metrics</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">🧪</span>
-                <div><div className="font-bold text-white text-sm">Benchmarks</div><div className="text-slate-400 text-xs">Comprehensive evaluation suite released</div></div>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#ef444430" }}>
+                <div className="text-2xl mb-3">🏆</div>
+                <h4 className="text-white font-bold mb-2">New SOTA</h4>
+                <p className="text-slate-400 text-sm">Establishes new state-of-the-art results across multiple benchmarks</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">📝</span>
-                <div><div className="font-bold text-white text-sm">Future Work</div><div className="text-slate-400 text-xs">Extending to additional domains and tasks</div></div>
+            </Reveal>
+            <Reveal delay={400}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#06b6d430" }}>
+                <div className="text-2xl mb-3">🌐</div>
+                <h4 className="text-white font-bold mb-2">Generalization</h4>
+                <p className="text-slate-400 text-sm">Shows strong transfer across diverse domains and evaluation settings</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">🔗</span>
-                <div><div className="font-bold text-white text-sm">Reproducibility</div><div className="text-slate-400 text-xs">Full experimental details and hyperparameters</div></div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={500}>
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-2xl p-6 flex items-center gap-6">
+              <div className="text-5xl">📦</div>
+              <div>
+                <div className="text-blue-400 font-bold text-lg">Open Source</div>
+                <div className="text-slate-400 text-sm mt-1">Code and models publicly available. Enables reproducible research and accelerates progress in 3d vision and scene reconstruction</div>
               </div>
             </div>
           </Reveal>
@@ -338,7 +537,7 @@ export default function Paper58Canvas() {
       </section>
 
       <footer className="border-t border-slate-800 py-8 text-center text-slate-600 text-sm">
-        <p>SAM 3D: 3Dfy Anything in Images • CVPR 2026</p>
+        <p>SAM 3D: 3Dfy Anything in Images • CVPR 2026 • Xingyu Chen et al.</p>
       </footer>
     </div>
   );

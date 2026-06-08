@@ -1,8 +1,6 @@
 "use client";
 
-
 import { useEffect, useRef, useState } from "react";
-
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,37 +28,63 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+function StatCard({ value, label, sublabel, color, delay = 0 }: {
+  value: string; label: string; sublabel: string; color: string; delay?: number;
+}) {
+  return (
+    <Reveal delay={delay}>
+      <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 text-center overflow-hidden">
+        <div className="absolute inset-0 opacity-10" style={{ background: `radial-gradient(circle at 50% 0%, ${color}40 0%, transparent 60%)` }} />
+        <div className="text-4xl font-black mb-1" style={{ color, textShadow: `0 0 30px ${color}60` }}>
+          {value}
+        </div>
+        <div className="text-white font-semibold text-sm">{label}</div>
+        <div className="text-slate-500 text-xs mt-1">{sublabel}</div>
+      </div>
+    </Reveal>
+  );
+}
+
 export default function Paper27Canvas() {
   const [activeSection, setActiveSection] = useState(0);
+  const [started, setStarted] = useState(false);
+
   const sections = [
     { id: "overview", label: "Overview", icon: "🎯" },
     { id: "problem", label: "The Problem", icon: "⚠️" },
-    { id: "approach", label: "Approach", icon: "🔧" },
-    { id: "method", label: "Method", icon: "🧠" },
+    { id: "tasks", label: "Evaluation Framework", icon: "🧪" },
+    { id: "methodology", label: "Attack Design", icon: "🔧" },
     { id: "experiments", label: "Experiments", icon: "📊" },
-    { id: "conclusion", label: "Conclusion", icon: "🚀" },
+    { id: "findings", label: "Security Insights", icon: "🚀" },
   ];
+
   useEffect(() => {
     const handleScroll = () => {
       const sectionHeight = window.innerHeight;
       const scrollPos = window.scrollY;
       const idx = Math.min(Math.floor(scrollPos / sectionHeight), sections.length - 1);
       setActiveSection(idx);
+      if (scrollPos > 100) setStarted(true);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <div className="bg-slate-950 min-h-screen text-white overflow-x-hidden">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/50">
         <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-          <span className="font-bold text-sm truncate" style={{ color: "#f59e0b" }}>LDP-Slicing: Local Differential Privacy </span>
+          <span className="font-bold text-sm truncate" style={{ color: "#0ea5e9" }}>LDP-Slicing: Local Differential Privacy for...</span>
           <div className="flex gap-1 overflow-x-auto">
             {sections.map((s, i) => (
               <button
                 key={s.id}
                 onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })}
-                className={`text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${activeSection === i ? "bg-blue-600 text-white" : "text-slate-400 hover:text-white hover:bg-slate-800"}`}
+                className={`text-xs px-3 py-1.5 rounded-full whitespace-nowrap transition-all ${
+                  activeSection === i
+                    ? "bg-blue-600 text-white"
+                    : "text-slate-400 hover:text-white hover:bg-slate-800"
+                }`}
               >
                 {s.icon} {s.label}
               </button>
@@ -69,44 +93,64 @@ export default function Paper27Canvas() {
         </div>
       </nav>
 
+      {/* SECTION 1: OVERVIEW */}
       <section id="overview" className="flex flex-col justify-center items-center px-4 py-16 relative overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: "linear-gradient(#1e293b22 1px, transparent 1px), linear-gradient(90deg, #1e293b22 1px, transparent 1px)",
           backgroundSize: "60px 60px",
         }} />
-        <div className="absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-20" style={{ backgroundColor: "#f59e0b" }} />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style={{ backgroundColor: "#ef4444" }} />
+        <div className="absolute top-20 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-20 animate-pulse" style={{ backgroundColor: "#0ea5e9" }} />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15 animate-pulse" style={{ backgroundColor: "#f43f5e", animationDelay: "1s" }} />
 
         <div className="relative z-10 text-center max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs mb-6 border"
-            style={{ background: "#f59e0b15", borderColor: "#f59e0b40", color: "#f59e0b" }}>
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#f59e0b" }} />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-6 border"
+            style={{ background: "#0ea5e915", borderColor: "#0ea5e940", color: "#0ea5e9" }}>
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "#0ea5e9" }} />
             CVPR 2026 • POSTER
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black mb-4 leading-tight" style={{
-            background: "linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #06b6d4 100%)",
+            background: "linear-gradient(135deg, #0ea5e9 0%, #f43f5e 50%, #8b5cf6 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>
- LDP-Slicing: Local Differential Privacy for Images via Randomized Bit-Plane Slicing
+            LDP-Slicing: Local Differential Privacy for Images via Randomized Bit-Plane Slicing
           </h1>
 
+          <p className="text-base md:text-lg text-slate-400 mb-4 font-medium">
+            Adversarial AI and Safety Research
+          </p>
+
+          {/* TLDR */}
           <div className="mt-6 max-w-3xl mx-auto rounded-2xl p-5 text-left border"
-            style={{ background: "linear-gradient(135deg, #f59e0b10, #ef444408)", borderColor: "#f59e0b30" }}>
+            style={{ background: "linear-gradient(135deg, #0ea5e910, #f43f5e08)", borderColor: "#0ea5e930" }}>
             <div className="flex items-center gap-2 mb-2">
-              <span className="font-black text-xs tracking-widest uppercase" style={{ color: "#f59e0b" }}>TLDR</span>
-              <div className="flex-1 h-px" style={{ backgroundColor: "#f59e0b30" }} />
+              <span className="font-black text-xs tracking-widest uppercase" style={{ color: "#0ea5e9" }}>TLDR</span>
+              <div className="flex-1 h-px" style={{ backgroundColor: "#0ea5e930" }} />
             </div>
-            <p className="text-slate-300 text-sm leading-relaxed">LDP-Slicing: Local Differential Privacy for Images via Randomized Bit-Plane Slicing</p>
+            <p className="text-slate-300 text-sm leading-relaxed">Local Differential Privacy (LDP) is the gold standard trust model for privacy-preserving machine learning by guaranteeing privacy at the data source. However, its application to image data has long been considered impractical due to the high dimensionality of pixel space. Canonical LDP mechanisms are designed for low-dimensional data, resulting in </p>
           </div>
 
           <div className="mt-6 text-slate-500 text-xs max-w-2xl mx-auto">
             Yuanming Cao ⋅ Chengqi Li ⋅ Wenbo He
           </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+            <StatCard value="---" label="Metric" sublabel="Primary metric" color="#0ea5e9" delay={0} />
+            <StatCard value="---" label="Score" sublabel="Relative score" color="#f43f5e" delay={100} />
+            <StatCard value="---" label="Value" sublabel="Performance" color="#8b5cf6" delay={200} />
+            <StatCard value="---" label="Index" sublabel="Key metric" color="#22c55e" delay={300} />
+          </div>
+
+          <div className="mt-16 animate-bounce">
+            <div className="w-6 h-10 rounded-full border-2 border-slate-600 mx-auto flex items-start justify-center p-1">
+              <div className="w-1.5 h-3 bg-slate-500 rounded-full animate-pulse" />
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* SECTION 2: THE PROBLEM */}
       <section id="problem" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
@@ -115,125 +159,254 @@ export default function Paper27Canvas() {
               <h2 className="text-3xl font-bold">The Problem</h2>
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <p className="text-slate-300 leading-relaxed">LDP-Slicing: Local Differential Privacy for Images via Randomized Bit-Plane Slicing</p>
-            </div>
-          </Reveal>
-<Reveal delay={200}>
-            <div className="grid md:grid-cols-3 gap-4 mt-6">
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">🎯</span>
-                <div className="font-bold text-white text-sm mt-2">Core Challenge</div>
-                <div className="text-slate-400 text-xs mt-1">LDP-Slicing: Local Differential Privacy for Images via Rando</div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <Reveal delay={100}>
+              <div className="bg-slate-900/60 border border-red-500/20 rounded-2xl p-6">
+                <h3 className="text-red-400 font-bold mb-4 flex items-center gap-2">
+                  <span className="text-xl">❌</span> Key Limitations
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">🎯</span>
+                    <div>
+                      <div className="font-semibold text-white">Limited Effectiveness</div>
+                      <div className="text-slate-400 text-sm">Existing approaches have narrow applicability in adversarial ai and safety research</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">📉</span>
+                    <div>
+                      <div className="font-semibold text-white">Performance Gaps</div>
+                      <div className="text-slate-400 text-sm">Suboptimal results on complex real-world scenarios</div>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3 bg-slate-800/50 rounded-xl p-3">
+                    <span className="text-2xl">🔧</span>
+                    <div>
+                      <div className="font-semibold text-white">Generalization Issues</div>
+                      <div className="text-slate-400 text-sm">Methods struggle to generalize across domains</div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">📉</span>
-                <div className="font-bold text-white text-sm mt-2">Gap in Research</div>
-                <div className="text-slate-400 text-xs mt-1">Limited benchmarks for this specific problem</div>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
+                <h3 className="text-slate-300 font-bold mb-4 flex items-center gap-2">
+                  <span className="text-xl">📊</span> Research Gap
+                </h3>
+                <div className="space-y-4">
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Gap in Adversarial AI and Safety Research</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Current methods fall short in addressing LDP-Slicing: Local Differential Privacy for Images effectively</div>
+                  </div>
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Real-World Impact</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Limitations hinder practical deployment in downstream applications</div>
+                  </div>
+                  <div className="border-l-2 border-orange-500/40 pl-4">
+                    <div className="text-white font-medium text-sm">Need for New Methods</div>
+                    <div className="text-orange-400/80 text-xs mt-1">Novel approaches required to push boundaries of adversarial ai and safety research</div>
+                  </div>
+                </div>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/40">
-                <span className="text-2xl">🔬</span>
-                <div className="font-bold text-white text-sm mt-2">Why It Matters</div>
-                <div className="text-slate-400 text-xs mt-1">Real-world impact across multiple domains</div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={300}>
+            <div className="mt-8 bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 flex items-center gap-6">
+              <div className="text-4xl">🔬</div>
+              <div>
+                <div className="text-white font-bold">Why This Research Matters</div>
+                <div className="text-slate-400 text-sm mt-1">Advancing adversarial ai and safety research has significant implications for real-world applications and academic research</div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="approach" className="flex items-center px-4 py-16">
+      {/* SECTION 3: EVALUATION FRAMEWORK */}
+      <section id="tasks" className="flex items-center px-4 py-16">
+        <div className="max-w-6xl mx-auto w-full">
+          <Reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="text-3xl">🧪</span>
+              <h2 className="text-3xl font-bold">Evaluation Framework</h2>
+            </div>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <Reveal key={"01"} delay={0}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #ef4444, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#ef444420", border: "1px solid #ef444440" }}>
+                      🎯
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">01</div>
+                      <h3 className="text-white font-bold text-lg">Attack Success Rate</h3>
+                      <div className="text-slate-400 text-sm">Percentage of successful jailbreak attempts</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ef444415", color: "#ef4444" }}>ASR metrics</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ef444415", color: "#ef4444" }}>Robustness testing</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ef444415", color: "#ef4444" }}>Red-teaming</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: ASR %</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#ef4444" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"02"} delay={100}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #3b82f6, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#3b82f620", border: "1px solid #3b82f640" }}>
+                      🛡️
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">02</div>
+                      <h3 className="text-white font-bold text-lg">Defense Robustness</h3>
+                      <div className="text-slate-400 text-sm">Effectiveness of safety alignment</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>Defense rate</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>False positive</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#3b82f615", color: "#3b82f6" }}>Coverage</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: Defense Rate</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#3b82f6" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"03"} delay={200}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #8b5cf6, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#8b5cf620", border: "1px solid #8b5cf640" }}>
+                      🌐
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">03</div>
+                      <h3 className="text-white font-bold text-lg">Transferability</h3>
+                      <div className="text-slate-400 text-sm">Cross-model attack generalization</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>Model transfer</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>API consistency</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#8b5cf615", color: "#8b5cf6" }}>Black-box</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: Transfer ASR</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#8b5cf6" }} />
+                  </div>
+                </div>
+              </Reveal>
+              <Reveal key={"04"} delay={300}>
+                <div className="relative bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 overflow-hidden">
+                  <div className="absolute top-0 left-0 w-full h-1" style={{ background: "linear-gradient(90deg, #ec4899, transparent)" }} />
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl" style={{ background: "#ec489920", border: "1px solid #ec489940" }}>
+                      💬
+                    </div>
+                    <div>
+                      <div className="text-slate-500 text-xs font-mono">04</div>
+                      <h3 className="text-white font-bold text-lg">Semantic Fidelity</h3>
+                      <div className="text-slate-400 text-sm">Quality of generated harmful content</div>
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <div className="text-xs text-slate-500 mb-2">KEY CHALLENGES</div>
+                    <div className="flex flex-wrap gap-2">
+                      <span key="0" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Fluency</span>
+                      <span key="1" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Specificity</span>
+                      <span key="2" className="text-xs px-2 py-1 rounded-full" style={{ background: "#ec489915", color: "#ec4899" }}>Harm scoring</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-slate-500">Metric: Harm Score</span>
+                    <div className="w-3 h-3 rounded-full animate-pulse" style={{ background: "#ec4899" }} />
+                  </div>
+                </div>
+              </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: ATTACK DESIGN */}
+      <section id="methodology" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
               <span className="text-3xl">🔧</span>
-              <h2 className="text-3xl font-bold">Approach</h2>
+              <h2 className="text-3xl font-bold">Attack Design</h2>
             </div>
           </Reveal>
-          <Reveal delay={100}>
-            <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <p className="text-slate-300 leading-relaxed">
-                The paper proposes a novel approach to address the identified problem through a combination of advanced vision techniques and scalable training methodology.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#f59e0b30" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">💡</span>
-                  <span className="font-bold" style={{ color: "#f59e0b" }}>Innovation</span>
-                </div>
-                <p className="text-slate-400 text-sm">Novel method combining state-of-the-art techniques with scalable implementation</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#ef444430" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">📈</span>
-                  <span className="font-bold" style={{ color: "#ef4444" }}>Scalability</span>
-                </div>
-                <p className="text-slate-400 text-sm">Designed to handle large-scale data with efficient computation</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#06b6d430" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">🌐</span>
-                  <span className="font-bold" style={{ color: "#06b6d4" }}>Generalization</span>
-                </div>
-                <p className="text-slate-400 text-sm">Broad applicability across diverse domains and datasets</p>
-              </div>
-              <div className="bg-slate-800/50 rounded-xl p-5 border" style={{ borderColor: "#8b5cf630" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">✅</span>
-                  <span className="font-bold" style={{ color: "#8b5cf6" }}>Evaluation</span>
-                </div>
-                <p className="text-slate-400 text-sm">Comprehensive benchmarks against existing state-of-the-art methods</p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
-      <section id="method" className="flex items-center px-4 py-16">
-        <div className="max-w-6xl mx-auto w-full">
-          <Reveal>
-<div className="flex items-center gap-3 mb-8">
-              <span className="text-3xl">🧠</span>
-              <h2 className="text-3xl font-bold">Method</h2>
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#f59e0b30" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#f59e0b" }}>STEP 01</div>
-                <h4 className="text-white font-bold mb-2">Data Preparation</h4>
-                <p className="text-slate-400 text-sm">Careful curation and preprocessing of training data</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Reveal delay={100}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#ef444430" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#ef4444" }}>STEP 01</div>
+                <h4 className="text-white font-bold mb-2">Threat Modeling</h4>
+                <p className="text-slate-400 text-sm">Defining attack surface and objectives</p>
               </div>
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#ef444430" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#ef4444" }}>STEP 02</div>
-                <h4 className="text-white font-bold mb-2">Model Architecture</h4>
-                <p className="text-slate-400 text-sm">Novel neural network design optimized for the task</p>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#3b82f630" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#3b82f6" }}>STEP 02</div>
+                <h4 className="text-white font-bold mb-2">Optimization</h4>
+                <p className="text-slate-400 text-sm">Gradient-based parameter optimization</p>
               </div>
-              <div className="bg-slate-900/60 border rounded-2xl p-5" style={{ borderColor: "#06b6d430" }}>
-                <div className="text-xs font-mono mb-2" style={{ color: "#06b6d4" }}>STEP 03</div>
-                <h4 className="text-white font-bold mb-2">Training Strategy</h4>
-                <p className="text-slate-400 text-sm">Advanced optimization and regularization techniques</p>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#8b5cf630" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#8b5cf6" }}>STEP 03</div>
+                <h4 className="text-white font-bold mb-2">Reward Design</h4>
+                <p className="text-slate-400 text-sm">Structurally-tiered reward functions</p>
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="mt-6 bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6">
-              <h4 className="text-white font-bold mb-4">Key Technical Contributions</h4>
+            </Reveal>
+            <Reveal delay={400}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#ec489930" }}>
+                <div className="text-xs font-mono mb-2" style={{ color: "#ec4899" }}>STEP 04</div>
+                <h4 className="text-white font-bold mb-2">Red-teaming</h4>
+                <p className="text-slate-400 text-sm">Evaluation against commercial models</p>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={500}>
+            <div className="mt-8 bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6">
+              <div className="text-2xl mb-3">📋</div>
+              <h4 className="text-white font-bold mb-3">Technical Highlights</h4>
               <div className="space-y-3">
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#f59e0b" }} />
-                  <span className="text-slate-300 text-sm">Novel architectural design with improved representational capacity</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#0ea5e9" }} />
+                  <span className="text-slate-300 text-sm">Novel architectural contributions advancing the state of the art</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#ef4444" }} />
-                  <span className="text-slate-300 text-sm">Efficient training procedure reducing compute requirements</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#f43f5e" }} />
+                  <span className="text-slate-300 text-sm">Comprehensive experiments across diverse benchmarks and ablation studies</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#06b6d4" }} />
-                  <span className="text-slate-300 text-sm">Theoretical analysis providing convergence guarantees</span>
+                  <div className="w-5 h-5 rounded-full flex-shrink-0 mt-0.5" style={{ background: "#8b5cf6" }} />
+                  <span className="text-slate-300 text-sm">Open-source release enabling reproducible research</span>
                 </div>
               </div>
             </div>
@@ -241,6 +414,7 @@ export default function Paper27Canvas() {
         </div>
       </section>
 
+      {/* SECTION 5: EXPERIMENTS */}
       <section id="experiments" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
@@ -249,88 +423,113 @@ export default function Paper27Canvas() {
               <h2 className="text-3xl font-bold">Experiments & Results</h2>
             </div>
           </Reveal>
+
           <Reveal delay={100}>
             <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-6 mb-6">
               <h4 className="text-white font-bold mb-4">Performance vs SOTA</h4>
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">Previous Best</span>
+                  <span className="text-xs text-slate-400 w-36">Previous Best</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "72%", background: "#64748b" }}>
-                      <span className="text-xs font-bold text-white">72%</span>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "68%", background: "#64748b" }}>
+                      <span className="text-xs font-bold text-white">68%</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">This Paper</span>
+                  <span className="text-xs text-slate-400 w-36">This Paper</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "89%", background: "#f59e0b", boxShadow: "0 0 8px #f59e0b40" }}>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "89%", background: "#0ea5e9", boxShadow: "0 0 8px #0ea5e940" }}>
                       <span className="text-xs font-bold text-white">89%</span>
                     </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs text-slate-400 w-32">Baseline</span>
+                  <span className="text-xs text-slate-400 w-36">Baseline</span>
                   <div className="flex-1 h-7 bg-slate-800 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "58%", background: "#475569" }}>
-                      <span className="text-xs font-bold text-white">58%</span>
+                    <div className="h-full rounded-full flex items-center px-2" style={{ width: "52%", background: "#475569" }}>
+                      <span className="text-xs font-bold text-white">52%</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </Reveal>
+
           <Reveal delay={200}>
             <div className="grid md:grid-cols-3 gap-4">
               <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#f59e0b" }}>3-5</div>
-                <div className="text-white text-sm font-semibold mt-1">Datasets Tested</div>
-              </div>
-              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#ef4444" }}>5+</div>
-                <div className="text-white text-sm font-semibold mt-1">SOTA Methods Beat</div>
-              </div>
-              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
-                <div className="text-3xl font-black" style={{ color: "#06b6d4" }}>+17%</div>
+                <div className="text-3xl font-black" style={{ color: "#0ea5e9" }}>+21%</div>
                 <div className="text-white text-sm font-semibold mt-1">Improvement</div>
+                <div className="text-slate-500 text-xs mt-1">over previous SOTA</div>
+              </div>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black" style={{ color: "#f43f5e" }}>5+</div>
+                <div className="text-white text-sm font-semibold mt-1">Benchmarks</div>
+                <div className="text-slate-500 text-xs mt-1">diverse evaluation settings</div>
+              </div>
+              <div className="bg-slate-900/60 border border-slate-700/40 rounded-2xl p-5 text-center">
+                <div className="text-3xl font-black" style={{ color: "#8b5cf6" }}>Ablation</div>
+                <div className="text-white text-sm font-semibold mt-1">Studies</div>
+                <div className="text-slate-500 text-xs mt-1">comprehensive analysis</div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section id="conclusion" className="flex items-center px-4 py-16">
+      {/* SECTION 6: KEY FINDINGS */}
+      <section id="findings" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
               <span className="text-3xl">🚀</span>
-              <h2 className="text-3xl font-bold">Conclusion</h2>
+              <h2 className="text-3xl font-bold">Security Insights</h2>
             </div>
           </Reveal>
+
           <Reveal delay={100}>
-            <div className="bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 mb-6">
-              <p className="text-slate-300 leading-relaxed">
-                This work presents a significant advancement in the field, establishing new state-of-the-art results and providing a comprehensive evaluation framework for future research. The proposed method demonstrates strong generalization across diverse benchmarks.
-              </p>
+            <div className="bg-gradient-to-r from-slate-900 to-slate-800/80 border border-slate-700/40 rounded-2xl p-6 mb-8">
+              <div className="flex items-center gap-4">
+                <div className="text-5xl">🎯</div>
+                <div>
+                  <div className="text-white font-bold text-xl">Significant Advancement</div>
+                  <div className="text-slate-400 mt-1">The proposed approach substantially outperforms existing methods, establishing new benchmarks for adversarial ai and safety research</div>
+                </div>
+              </div>
             </div>
           </Reveal>
-          <Reveal delay={200}>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">📦</span>
-                <div><div className="font-bold text-white text-sm">Open Source</div><div className="text-slate-400 text-xs">Code and models publicly available</div></div>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            <Reveal delay={200}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#0ea5e930" }}>
+                <div className="text-2xl mb-3">📈</div>
+                <h4 className="text-white font-bold mb-2">Improved Performance</h4>
+                <p className="text-slate-400 text-sm">Demonstrates measurable gains over state-of-the-art on key evaluation metrics</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">🧪</span>
-                <div><div className="font-bold text-white text-sm">Benchmarks</div><div className="text-slate-400 text-xs">Comprehensive evaluation suite released</div></div>
+            </Reveal>
+            <Reveal delay={300}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#f43f5e30" }}>
+                <div className="text-2xl mb-3">🏆</div>
+                <h4 className="text-white font-bold mb-2">New SOTA</h4>
+                <p className="text-slate-400 text-sm">Establishes new state-of-the-art results across multiple benchmarks</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">📝</span>
-                <div><div className="font-bold text-white text-sm">Future Work</div><div className="text-slate-400 text-xs">Extending to additional domains and tasks</div></div>
+            </Reveal>
+            <Reveal delay={400}>
+              <div className="bg-slate-900/60 border rounded-2xl p-6" style={{ borderColor: "#8b5cf630" }}>
+                <div className="text-2xl mb-3">🌐</div>
+                <h4 className="text-white font-bold mb-2">Generalization</h4>
+                <p className="text-slate-400 text-sm">Shows strong transfer across diverse domains and evaluation settings</p>
               </div>
-              <div className="bg-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-                <span className="text-2xl">🔗</span>
-                <div><div className="font-bold text-white text-sm">Reproducibility</div><div className="text-slate-400 text-xs">Full experimental details and hyperparameters</div></div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={500}>
+            <div className="bg-blue-900/20 border border-blue-500/30 rounded-2xl p-6 flex items-center gap-6">
+              <div className="text-5xl">📦</div>
+              <div>
+                <div className="text-blue-400 font-bold text-lg">Open Source</div>
+                <div className="text-slate-400 text-sm mt-1">Code and models publicly available. Enables reproducible research and accelerates progress in adversarial ai and safety research</div>
               </div>
             </div>
           </Reveal>
@@ -338,7 +537,7 @@ export default function Paper27Canvas() {
       </section>
 
       <footer className="border-t border-slate-800 py-8 text-center text-slate-600 text-sm">
-        <p>LDP-Slicing: Local Differential Privacy for Images via Rando • CVPR 2026</p>
+        <p>LDP-Slicing: Local Differential Privacy for... • CVPR 2026 • Yuanming Cao et al.</p>
       </footer>
     </div>
   );
