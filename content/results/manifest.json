@@ -1,0 +1,513 @@
+[
+  {
+    "slug": "01_3dreflecnet-a-largescale-dataset-for-3d-reconstruction-of-re",
+    "title": "3DReflecNet: A Large-Scale Dataset for 3D Reconstruction of Reflective, Transparent, and Low-Texture Objects",
+    "component": "PaperViz_01",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "02_adversarial-style-optimization-enhancing-vlm-jailbreaks-by-g",
+    "title": "Adversarial Style Optimization: Enhancing VLM Jailbreaks by GRPO-based Stylistic Triggers Optimization",
+    "component": "PaperViz_02",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "03_a-style-is-worth-one-code-unlocking-codetostyle-image-genera",
+    "title": "A Style is Worth One Code: Unlocking Code-to-Style Image Generation with Discrete Style Space",
+    "component": "PaperViz_03",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "04_blackbox-membership-inference-attacks-on-the-pretraining-dat",
+    "title": "Black-box Membership Inference Attacks on the Pre-training Data of Image-generation Models",
+    "component": "PaperViz_04",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "05_chordedit-onestep-lowenergy-transport-for-image-editing",
+    "title": "ChordEdit: One-Step Low-Energy Transport for Image Editing",
+    "component": "PaperViz_05",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "06_chorus-multiteacher-pretraining-for-holistic-3d-gaussian-sce",
+    "title": "Chorus: Multi-Teacher Pretraining for Holistic 3D Gaussian Scene Encoding",
+    "component": "PaperViz_06",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "07_cinebrain-a-largescale-multimodal-audiovisual-brain-dataset-",
+    "title": "CineBrain: A Large-Scale Multi-Modal Audiovisual Brain Dataset for Brain-Conditioned Video Generation",
+    "component": "PaperViz_07",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "08_compose-a-unified-completionpose-framework-for-robust-catego",
+    "title": "ComPose: A Unified Completion-Pose Framework for Robust Category-Level Object Pose Estimation",
+    "component": "PaperViz_08",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "09_cosmo3d-openworld-promptable-3d-semantic-segmentation-throug",
+    "title": "CoSMo3D: Open-World Promptable 3D Semantic Segmentation through LLM-Guided Canonical Spatial Modeling",
+    "component": "PaperViz_09",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "10_customized-fusion-a-closedloop-dynamic-network-for-adaptive-",
+    "title": "Customized Fusion: A Closed-Loop Dynamic Network for Adaptive Multi-Task-Aware Infrared-Visible Image Fusion",
+    "component": "PaperViz_10",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "11_data-leakage-detection-and-deduplication-in-large-scale-geos",
+    "title": "Data Leakage Detection and De-duplication in Large Scale Geospatial Image Datasets",
+    "component": "PaperViz_11",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "12_differentiable-vector-quantization-for-ratedistortion-optimi",
+    "title": "Differentiable Vector Quantization for Rate-Distortion Optimization of Generative Image Compression",
+    "component": "PaperViz_12",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "13_dual-band-thermal-videography-separating-timevarying-reflect",
+    "title": "Dual Band Thermal Videography: Separating Time-Varying Reflection and Emission Near Ambient Conditions",
+    "component": "PaperViz_13",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "14_duallevel-adapter-boosting-promptfree-curvilinear-structure-",
+    "title": "Dual-level Adapter Boosting Prompt-free Curvilinear Structure Segmentation",
+    "component": "PaperViz_14",
+    "vizType": "heatmap",
+    "description": ""
+  },
+  {
+    "slug": "15_efficiently-reconstructing-dynamic-scenes-one-d4rt-at-a-time",
+    "title": "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time",
+    "component": "PaperViz_15",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "16_efficient-unrolled-networks-for-largescale-3d-inverse-proble",
+    "title": "Efficient Unrolled Networks for Large-Scale 3D Inverse Problems",
+    "component": "PaperViz_16",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "17_evidential-neural-radiance-fields",
+    "title": "Evidential Neural Radiance Fields",
+    "component": "PaperViz_17",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "18_fedadamom-adaptive-momentum-for-improved-generalization-in-f",
+    "title": "FedAdamom: Adaptive Momentum for Improved Generalization in Federated Optimization",
+    "component": "PaperViz_18",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "19_finer-mllms-hallucinate-under-finegrained-negative-queries",
+    "title": "FINER: MLLMs Hallucinate under Fine-grained Negative Queries",
+    "component": "PaperViz_19",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "20_fuser-feedforward-multiview-3d-registration-transformer-and-",
+    "title": "FUSER: Feed-Forward Multiview 3D Registration Transformer and SE(3)^N Diffusion Refinement",
+    "component": "PaperViz_20",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "21_gaussianfluent-gaussian-simulation-for-dynamic-scenes-with-m",
+    "title": "GaussianFluent: Gaussian Simulation for Dynamic Scenes with Mixed Materials",
+    "component": "PaperViz_21",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "22_geovis-geospatially-rewarded-visual-search-for-remote-sensin",
+    "title": "GeoViS: Geospatially Rewarded Visual Search for Remote Sensing Visual Grounding",
+    "component": "PaperViz_22",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "23_glint-modeling-scenescale-transparency-via-gaussian-radiance",
+    "title": "GLINT: Modeling Scene-Scale Transparency via Gaussian Radiance Transport",
+    "component": "PaperViz_23",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "24_globalaware-edge-prioritization-for-pose-graph-initializatio",
+    "title": "Global-Aware Edge Prioritization for Pose Graph Initialization",
+    "component": "PaperViz_24",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "25_hearing-the-room-through-the-shape-of-the-drum-modalguided-s",
+    "title": "Hearing the Room Through the Shape of the Drum: Modal-Guided Sound Recovery from Multi-Point Surface Vibrations",
+    "component": "PaperViz_25",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "26_immeriris-a-largescale-dataset-and-benchmark-for-offaxis-and",
+    "title": "ImmerIris: A Large-Scale Dataset and Benchmark for Off-Axis and Unconstrained Iris Recognition in Immersive Applications",
+    "component": "PaperViz_26",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "27_ldpslicing-local-differential-privacy-for-images-via-randomi",
+    "title": "LDP-Slicing: Local Differential Privacy for Images via Randomized Bit-Plane Slicing",
+    "component": "PaperViz_27",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "28_learning-diffeomorphism-for-medical-image-registration-with-",
+    "title": "Learning Diffeomorphism for Medical Image Registration with Time-Embedded Architectures Using Semigroup Regularization",
+    "component": "PaperViz_28",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "29_learning-eigenstructures-of-unstructured-data-manifolds",
+    "title": "Learning Eigenstructures of Unstructured Data Manifolds",
+    "component": "PaperViz_29",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "30_learning-latent-concepts-for-detecting-outofdistribution-obj",
+    "title": "Learning Latent Concepts for Detecting Out-of-Distribution Objects",
+    "component": "PaperViz_30",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "31_linear-fundamental-matrix-estimation-from-7-or-5-points",
+    "title": "Linear Fundamental Matrix Estimation from 7 or 5 Points",
+    "component": "PaperViz_31",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "32_mamma-markerless-accurate-multiperson-motion-acquisition",
+    "title": "MAMMA: Markerless Accurate Multi-person Motion Acquisition",
+    "component": "PaperViz_32",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "33_mapping-networks",
+    "title": "Mapping Networks",
+    "component": "PaperViz_33",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "34_medicad-towards-medical-visionlanguage-models-clinical-intel",
+    "title": "Medic-AD: Towards Medical Vision-Language Model's Clinical Intelligence",
+    "component": "PaperViz_34",
+    "vizType": "heatmap",
+    "description": ""
+  },
+  {
+    "slug": "35_memoryaugmented-scene-understanding-and-exploration-for-open",
+    "title": "Memory-Augmented Scene Understanding and Exploration for Open-World Aerial Object-Goal Navigation",
+    "component": "PaperViz_35",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "36_metaspectra-a-compact-broadband-metasurface-camera-for-snaps",
+    "title": "MetaSpectra+: A Compact Broadband Metasurface Camera for Snapshot Hyperspectral+ Imaging",
+    "component": "PaperViz_36",
+    "vizType": "bar",
+    "description": ""
+  },
+  {
+    "slug": "37_molmo2-open-weights-and-data-for-visionlanguage-models-with-",
+    "title": "Molmo2: Open Weights and Data for Vision-Language Models with Video Understanding and Grounding",
+    "component": "PaperViz_37",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "38_monocular-open-vocabulary-occupancy-prediction-for-indoor-sc",
+    "title": "Monocular Open Vocabulary Occupancy Prediction for Indoor Scenes",
+    "component": "PaperViz_38",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "39_native-and-compact-structured-latents-for-3d-generation",
+    "title": "Native and Compact Structured Latents for 3D Generation",
+    "component": "PaperViz_39",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "40_natural-human-motion-recovery-by-aligning-highorder-temporal",
+    "title": "Natural Human Motion Recovery by Aligning High-Order Temporal Dynamics from Monocular Videos",
+    "component": "PaperViz_40",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "41_nitrogen-an-open-foundation-model-for-generalist-gaming-agen",
+    "title": "NitroGen: An Open Foundation Model for Generalist Gaming Agents",
+    "component": "PaperViz_41",
+    "vizType": "bar",
+    "description": ""
+  },
+  {
+    "slug": "42_nuwa-deriving-lightweight-classspecific-vision-transformers-",
+    "title": "NuWa: Deriving Lightweight Class-Specific Vision Transformers for Edge Devices",
+    "component": "PaperViz_42",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "43_olatverse-a-largescale-realworld-object-dataset-with-precise",
+    "title": "OLATverse: A Large-scale Real-world Object Dataset with Precise Lighting Control",
+    "component": "PaperViz_43",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "44_opendance-multimodal-controllable-3d-dance-generation-with-l",
+    "title": "OpenDance: Multimodal Controllable 3D Dance Generation with Large-scale Internet Data",
+    "component": "PaperViz_44",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "45_paibench-a-comprehensive-benchmark-for-physical-ai",
+    "title": "PAI-Bench: A Comprehensive Benchmark For Physical AI",
+    "component": "PaperViz_45",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "46_phygap-physicallygrounded-gaussians-with-polarization-cues",
+    "title": "PhyGaP: Physically-Grounded Gaussians with Polarization Cues",
+    "component": "PaperViz_46",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "47_pixeldit-pixel-diffusion-transformers-for-image-generation",
+    "title": "PixelDiT: Pixel Diffusion Transformers for Image Generation",
+    "component": "PaperViz_47",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "48_plant-taxonomy-meets-plant-counting-a-finegrained-taxonomic-",
+    "title": "Plant Taxonomy Meets Plant Counting: A Fine-Grained, Taxonomic Dataset for Counting Hundreds of Plant Species",
+    "component": "PaperViz_48",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "49_prophy-progressive-physical-alignment-for-dynamic-world-simu",
+    "title": "ProPhy: Progressive Physical Alignment for Dynamic World Simulation",
+    "component": "PaperViz_49",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "50_proxygs-unified-occlusion-priors-for-training-and-inference-",
+    "title": "Proxy-GS: Unified Occlusion Priors for Training and Inference in Structured 3D Gaussian Splatting",
+    "component": "PaperViz_50",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "51_quadsync-quadrifocal-tensor-synchronization-via-tucker-decom",
+    "title": "QuadSync: Quadrifocal Tensor Synchronization via Tucker Decomposition",
+    "component": "PaperViz_51",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "52_r2seg-trainingfree-ood-medical-tumor-segmentation-via-anatom",
+    "title": "R^2-Seg: Training-Free OOD Medical Tumor Segmentation via Anatomical Reasoning and Statistical Rejection",
+    "component": "PaperViz_52",
+    "vizType": "heatmap",
+    "description": ""
+  },
+  {
+    "slug": "53_refav-towards-planningcentric-scenario-mining",
+    "title": "RefAV: Towards Planning-Centric Scenario Mining",
+    "component": "PaperViz_53",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "54_relightable-holoported-characters-capturing-and-relighting-d",
+    "title": "Relightable Holoported Characters: Capturing and Relighting Dynamic Human Performance from Sparse Views",
+    "component": "PaperViz_54",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "55_residual-primitive-fitting-of-3d-shapes-with-superfrusta",
+    "title": "Residual Primitive Fitting of 3D Shapes with SuperFrusta",
+    "component": "PaperViz_55",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "56_rethinking-dataset-distillation-hard-truths-about-soft-label",
+    "title": "Rethinking Dataset Distillation: Hard Truths about Soft Labels",
+    "component": "PaperViz_56",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "57_revisiting-geometric-obfuscation-with-dual-convergent-lines-",
+    "title": "Revisiting Geometric Obfuscation with Dual Convergent Lines for Privacy-Preserving Image Queries in Visual Localization",
+    "component": "PaperViz_57",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "58_sam-3d-3dfy-anything-in-images",
+    "title": "SAM 3D: 3Dfy Anything in Images",
+    "component": "PaperViz_58",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "59_sam-3d-body-robust-fullbody-human-mesh-recovery",
+    "title": "SAM 3D Body: Robust Full-Body Human Mesh Recovery",
+    "component": "PaperViz_59",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "60_seacache-spectralevolutionaware-cache-for-accelerating-diffu",
+    "title": "SeaCache: Spectral-Evolution-Aware Cache for Accelerating Diffusion Models",
+    "component": "PaperViz_60",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "61_seegroup-multilayer-depth-estimation-of-transparent-surfaces",
+    "title": "SeeGroup: Multi-Layer Depth Estimation of Transparent Surfaces via Self-Determined Grouping",
+    "component": "PaperViz_61",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "62_smokesvd-smoke-reconstruction-from-a-single-view-via-progres",
+    "title": "SmokeSVD: Smoke Reconstruction from A Single View via Progressive Novel View Synthesis and Refinement with Diffusion Models",
+    "component": "PaperViz_62",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "63_soccermaster-a-vision-foundation-model-for-soccer-understand",
+    "title": "SoccerMaster: A Vision Foundation Model for Soccer Understanding",
+    "component": "PaperViz_63",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "64_socialnav-training-humaninspired-foundation-model-for-social",
+    "title": "SocialNav: Training Human-Inspired Foundation Model for Socially-Aware Embodied Navigation",
+    "component": "PaperViz_64",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "65_sparseworldtc-trajectoryconditioned-sparse-occupancy-world-m",
+    "title": "SparseWorld-TC: Trajectory-Conditioned Sparse Occupancy World Model",
+    "component": "PaperViz_65",
+    "vizType": "timeline",
+    "description": ""
+  },
+  {
+    "slug": "66_texvent-asynchronous-event-data-simulation-via-text-prompt",
+    "title": "Texvent: Asynchronous Event Data Simulation via Text Prompt",
+    "component": "PaperViz_66",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "67_the-safari-dataset-segment-anything-in-footage-of-animals-fo",
+    "title": "The SA-FARI Dataset: Segment Anything in Footage of Animals for Recognition and Identification",
+    "component": "PaperViz_67",
+    "vizType": "donut",
+    "description": ""
+  },
+  {
+    "slug": "68_thinking-with-drafts-speculative-temporal-reasoning-for-effi",
+    "title": "Thinking with Drafts: Speculative Temporal Reasoning for Efficient Long Video Understanding",
+    "component": "PaperViz_68",
+    "vizType": "radar",
+    "description": ""
+  },
+  {
+    "slug": "69_towards-photorealistic-and-efficient-bokeh-rendering-via-dif",
+    "title": "Towards Photorealistic and Efficient Bokeh Rendering via Diffusion Framework",
+    "component": "PaperViz_69",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "70_u2flow-uncertaintyaware-unsupervised-optical-flow-estimation",
+    "title": "U^2Flow: Uncertainty-Aware Unsupervised Optical Flow Estimation",
+    "component": "PaperViz_70",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "71_unreflectanything-rgbonly-highlight-removal-by-rendering-syn",
+    "title": "UnReflectAnything: RGB-Only Highlight Removal by Rendering Synthetic Specular Supervision",
+    "component": "PaperViz_71",
+    "vizType": "flow",
+    "description": ""
+  },
+  {
+    "slug": "72_vggtsegmentor-geometryenhanced-crossview-segmentation",
+    "title": "VGGT-Segmentor: Geometry-Enhanced Cross-View Segmentation",
+    "component": "PaperViz_72",
+    "vizType": "heatmap",
+    "description": ""
+  },
+  {
+    "slug": "73_vit3-unlocking-testtime-training-in-vision",
+    "title": "ViT^3: Unlocking Test-Time Training in Vision",
+    "component": "PaperViz_73",
+    "vizType": "donut",
+    "description": ""
+  }
+]
