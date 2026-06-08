@@ -1,0 +1,13 @@
+# GaussianFluent: Gaussian Simulation for Dynamic Scenes with Mixed Materials
+
+**Authors:** Bei Huang ⋅ Yixin Chen ⋅ Ruijie Lu ⋅ Gang Zeng ⋅ Hongbin Zha ⋅ Yuru Pei ⋅ Siyuan Huang
+
+**Date/Time:** Jun 6, 4:45 PM - 6:45 PM
+
+**Location:** ExHall A & F
+
+**Type:** POSTER
+
+## Abstract
+
+3D Gaussian Splatting (3DGS) has emerged as a prominent 3D representation for high-fidelity and real-time rendering. Prior work has coupled physics simulation with Gaussians, but predominantly targets soft, deformable materials, leaving brittle fracture largely unresolved. This stems from two key obstacles: the lack of volumetric interiors with coherent textures in GS representation, and the absence of fracture-aware simulation methods for Gaussians. To address these challenges, we introduce GaussianFluent, a unified framework for realistic simulation and rendering of dynamic object states. First, it synthesizes photorealistic interiors by densifying internal Gaussians guided by generative models. Second, it integrates an optimized Continuum Damage Material Point Method (CD-MPM) to enable brittle fracture simulation at remarkably high speed. Our approach handles complex scenarios including mixed-material objects and multi-stage fracture propagation, achieving results infeasible with previous methods. Experiments clearly demonstrate GaussianFluent's capability for photo-realistic, real-time rendering with structurally consistent interiors, highlighting its potential for downstream application, such as VR and Robotics. View full details
