@@ -174,6 +174,17 @@ export default function Paper1Infographic() {
             <span className="text-blue-400">Reflective</span>, <span className="text-violet-400">Transparent</span>, and <span className="text-emerald-400">Low-Texture Objects</span>
           </p>
 
+          {/* TLDR */}
+          <div className="mt-6 max-w-3xl mx-auto bg-gradient-to-r from-blue-900/40 via-violet-900/30 to-slate-900/60 border border-blue-500/30 rounded-2xl p-5 text-left">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-blue-400 font-black text-xs tracking-widest uppercase">TLDR</span>
+              <div className="flex-1 h-px bg-blue-500/30" />
+            </div>
+            <p className="text-slate-300 text-sm leading-relaxed">
+              Accurate 3D reconstruction of objects with reflective, transparent, or low-texture surfaces remains a significant challenge. Such materials often violate key assumptions in multi-view reconstruction pipelines, such as photometric consistency and the reliance on distinct geometric texture cues. Existing datasets primarily focus on diffuse, textured objects, thereby offering limited insight into performance under real-world material complexities. In this paper, we introduce <span className="text-blue-400 font-semibold">3DReflecNet</span>, a large-scale hybrid dataset exceeding <span className="text-violet-400 font-semibold">22 TB</span> that is specifically designed to benchmark and advance 3D vision methods for these challenging materials.
+            </p>
+          </div>
+
           {/* Authors */}
           <div className="mt-6 text-slate-500 text-sm">
             Zhicheng Liang ⋅ Haoyi Yu ⋅ Boyan Li ⋅ Dayou Zhang ⋅ Zijian Cao ⋅ Tianyi Gong ⋅ Junhua Liu ⋅ Shuguang Cui ⋅ Fangxin Wang
