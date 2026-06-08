@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #020617;
+  --fg: #f1f5f9;
+  --card: #0f172a;
+  --border: #1e293b;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --muted: #64748b;
+  --gist-bg: #0c1425;
+  --gist-border: #1d4ed8;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: background 0.15s;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background: var(--accent-hover);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.input {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--fg);
+  width: 100%;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--accent);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--border);
+  color: var(--muted);
+}
+.badge-blue { background: #1d4ed8; color: #bfdbfe; }
+.badge-green { background: #14532d; color: #bbf7d0; }
+.badge-amber { background: #78350f; color: #fde68a; }
+
+.gist-callout {
+  background: var(--gist-bg);
+  border-left: 3px solid var(--gist-border);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin: 1rem 0;
+}
+
+.section-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
