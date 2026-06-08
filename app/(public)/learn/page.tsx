@@ -1,102 +1,83 @@
-import { promises as fs } from "fs";
-import path from "path";
 import Link from "next/link";
-
-type LearningPage = {
-  slug: string;
-  title: string;
-  sourceUrl: string;
-  authors?: string;
-  date: string;
-  type: "paper" | "article" | "blog" | "video";
-  sections: { heading: string; gist: string; content: string; type: string }[];
-  createdAt: string;
-};
+import { getAllPapers } from "@/lib/papers";
 
 export const revalidate = 3600;
 
-async function getManifest(): Promise<LearningPage[]> {
-  try {
-    const file = await fs.readFile(
-      path.join(process.cwd(), "content/learn/manifest.json"),
-      "utf8"
-    );
-    return JSON.parse(file);
-  } catch {
-    return [];
-  }
-}
-
-const typeColors: Record<string, string> = {
-  paper: "badge-blue",
-  article: "badge-green",
-  blog: "badge-amber",
-  video: "badge",
-};
-
 export default async function LearnPage() {
-  const pages = await getManifest();
+  const papers = getAllPapers();
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-8">
-      <header className="mb-8 flex items-center justify-between">
+    <main className="max-w-4xl mx-auto px-4 py-8">
+      <header className="mb-8 flex items-end justify-between gap-4">
         <div>
-          <Link href="/" className="text-gray-500 hover:text-gray-300 text-sm mb-2 block">
+          <Link
+            href="/"
+            className="text-slate-500 hover:text-slate-300 text-sm mb-2 block"
+          >
             ← Home
           </Link>
-          <h1 className="text-2xl font-bold">📚 Learn</h1>
-          <p className="text-gray-400 text-sm mt-1">
-            Paper & article breakdowns
+          <h1 className="text-3xl font-black tracking-tight">📚 Learn</h1>
+          <p className="text-slate-400 text-sm mt-1">
+            {papers.length} CVPR 2026 papers — interactive abstract canvas per paper
           </p>
         </div>
-        <Link href="/admin" className="btn btn-outline text-sm">
-          + Add
-        </Link>
       </header>
 
-      {pages.length === 0 ? (
-        <div className="text-center py-16 text-gray-500">
+      {papers.length === 0 ? (
+        <div className="text-center py-16 text-slate-500">
           <p className="text-4xl mb-4">📭</p>
-          <p>No pages yet.</p>
-          <p className="text-sm mt-1">
-            <Link href="/admin" className="text-blue-400 hover:underline">
-              Add the first one
-            </Link>{" "}
-            via admin.
-          </p>
+          <p>No papers found.</p>
         </div>
       ) : (
-        <div className="space-y-4">
-          {pages.map((page) => (
-            <Link
-              key={page.slug}
-              href={`/learn/${page.slug}`}
-              className="card block hover:border-blue-600 transition-colors"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className={`badge ${typeColors[page.type] || "badge"}`}>
-                      {page.type}
-                    </span>
-                    <span className="text-gray-500 text-xs">
-                      {page.date}
-                    </span>
+        <ul className="grid gap-3 md:grid-cols-2">
+          {papers.map((p) => {
+            const slug = p.slug;
+            const firstSentence = p.abstract.split(/(?<=[.!?])\s+/)[0] ?? "";
+            return (
+              <li key={slug}>
+                <Link
+                  href={`/learn/${slug}`}
+                  className="group block h-full rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition hover:border-white/30 hover:bg-white/[0.06]"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    {p.type && (
+                      <span className="rounded-full border border-blue-400/40 bg-blue-500/10 px-2 py-0.5 text-[10px] font-black uppercase tracking-widest text-blue-300">
+                        {p.type}
+                      </span>
+                    )}
+                    {p.date && (
+                      <span className="text-[10px] uppercase tracking-widest text-slate-500">
+                        {p.date}
+                      </span>
+                    )}
                   </div>
-                  <h2 className="font-semibold text-base leading-snug">
-                    {page.title}
+                  <h2 className="font-semibold text-[15px] leading-snug text-white group-hover:text-blue-300 transition line-clamp-2">
+                    {p.title}
                   </h2>
-                  {page.authors && (
-                    <p className="text-gray-400 text-xs mt-1 truncate">
-                      {page.authors}
+                  {p.authors && (
+                    <p className="mt-2 text-[12px] text-slate-500 line-clamp-1">
+                      {p.authors}
                     </p>
                   )}
-                </div>
-                <span className="text-gray-600 text-sm flex-shrink-0">→</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                  {firstSentence && (
+                    <p className="mt-3 text-[12px] leading-relaxed text-slate-400 line-clamp-2">
+                      {firstSentence}
+                    </p>
+                  )}
+                  <div className="mt-3 flex items-center justify-between text-[11px] text-slate-500">
+                    <span>
+                      {p.abstract.split(/\s+/).filter(Boolean).length} words ·{" "}
+                      {p.abstract.split(/(?<=[.!?])\s+/).length} sentences
+                    </span>
+                    <span className="text-blue-400 group-hover:translate-x-0.5 transition">
+                      Open canvas →
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </main>
   );
