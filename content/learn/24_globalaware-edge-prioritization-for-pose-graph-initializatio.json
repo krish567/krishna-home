@@ -1,0 +1,34 @@
+{
+  "slug": "24_globalaware-edge-prioritization-for-pose-graph-initializatio",
+  "title": "Global-Aware Edge Prioritization for Pose Graph Initialization",
+  "authors": "Tong Wei \u22c5 Giorgos Tolias \u22c5 Jiri Matas \u22c5 Daniel Barath",
+  "sourceUrl": "",
+  "date": "Jun 7, 11:45 AM - 1:45 PM",
+  "location": "ExHall F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "The pose graph is a core component of Structure-from-Motion (SfM), where images act as nodes and edges encode relative poses.",
+      "content": "The pose graph is a core component of Structure-from-Motion (SfM), where images act as nodes and edges encode relative poses. Since geometric verification is expensive, SfM pipelines restrict the pose graph to a sparse set of candidate edges, making initialization critical. Existing methods rely on image retrieval to connect each image to its \ud835\udc58 nearest neighbors, treating pairs independently and ignoring global consistency. We address this limitation through the concept of edge prioritization, ranking candidate edges by their utility for SfM. Our approach has three components: (1) a GNN trained with SfM-derived supervision to predict globally consistent edge reliability; (2) multi-minimal-spanning-tree-based pose graph construction guided by these ranks; and (3) connectivity-aware score modulation that reinforces weak regions and reduces graph diameter."
+    },
+    {
+      "heading": "Problem",
+      "gist": "Global-Aware Edge Prioritization for Pose Graph Initialization addresses a key limitation in current vision systems.",
+      "content": "The pose graph is a core component of Structure-from-Motion (SfM), where images act as nodes and edges encode relative poses. Since geometric verification is expensive, SfM pipelines restrict the pose graph to a sparse set of candidate edges, making initialization critical. Existing methods rely on image retrieval to connect each image to its \ud835\udc58 nearest neighbors, treating pairs independently and ignoring global consistency. We address this limitation through the concept of edge prioritization, ranking candidate edges by their utility for SfM. Our approach has three components: (1) a GNN trained with SfM-derived supervision to predict globally consistent edge reliability; (2) multi-minimal-spanning-tree-based pose graph construction guided by these ranks; and (3) connectivity-aware score modulation that reinforces weak regions and reduces graph diameter. This globally informed initialization yields more reliable and compact pose graphs, improving reconstruction accuracy in sparse and high-speed settings and outperforming SOTA retrieval methods on ambiguous scenes. Code and models will be released. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "The pose graph is a core component of Structure-from-Motion (SfM), where images act as nodes and edges encode relative poses.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "The pose graph is a core component of Structure-from-Motion (SfM), where images act as nodes and edges encode relative poses. Since geometric verification is expensive, SfM pipelines restrict the pose graph to a sparse set of candidate edges, making initialization critical. Existing methods rely on image retrieval to connect each image to its \ud835\udc58 nearest neighbors, treating pairs independently and ignoring global consistency. We address this limitation through the concept of edge prioritization, ranking candidate edges by their utility for SfM. Our approach has three components: (1) a GNN trained with SfM-derived supervision to predict globally consistent edge reliability; (2) multi-minimal-spanning-tree-based pose graph construction guided by these ranks; and (3) connectivity-aware score modulation that reinforces weak regions and reduces graph diameter. This globally informed initialization yields more reliable and compact pose graphs, improving reconstruction accuracy in sparse and high-speed settings and outperforming SOTA retrieval methods on ambiguous scenes. Code and models will be released. View full details"
+    }
+  ]
+}

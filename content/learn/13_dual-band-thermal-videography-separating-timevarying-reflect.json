@@ -1,0 +1,34 @@
+{
+  "slug": "13_dual-band-thermal-videography-separating-timevarying-reflect",
+  "title": "Dual Band Thermal Videography: Separating Time-Varying Reflection and Emission Near Ambient Conditions",
+  "authors": "Sriram Narayanan \u22c5 Mani Ramanagopal \u22c5 Srinivasa G. Narasimhan",
+  "sourceUrl": "",
+  "date": "Jun 5, 10:45 AM - 12:45 PM",
+  "location": "ExHall A-F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Long-wave infrared radiation captured by a thermal camera includes (a) emission from an object governed by its temperature and emissivity, and (b) reflected radiation from the surrounding environment.",
+      "content": "Long-wave infrared radiation captured by a thermal camera includes (a) emission from an object governed by its temperature and emissivity, and (b) reflected radiation from the surrounding environment. Separating these components is a long-standing challenge in thermography. Even when using multiple bands, the problem is under-determined without priors on emissivity. This difficulty is amplified in near ambient conditions, where emitted and reflected signals are of comparable magnitude. We present a dual-band video thermography framework that reduces this ambiguity by combining two complementary ideas at a per-pixel level: (i) spectral cues (ratio of emissivity between bands is unknown but fixed), and (ii) temporal cues (object radiation changes smoothly while background radiation changes rapidly)."
+    },
+    {
+      "heading": "Problem",
+      "gist": "Dual Band Thermal Videography addresses a key limitation in current vision systems.",
+      "content": "Long-wave infrared radiation captured by a thermal camera includes (a) emission from an object governed by its temperature and emissivity, and (b) reflected radiation from the surrounding environment. Separating these components is a long-standing challenge in thermography. Even when using multiple bands, the problem is under-determined without priors on emissivity. This difficulty is amplified in near ambient conditions, where emitted and reflected signals are of comparable magnitude. We present a dual-band video thermography framework that reduces this ambiguity by combining two complementary ideas at a per-pixel level: (i) spectral cues (ratio of emissivity between bands is unknown but fixed), and (ii) temporal cues (object radiation changes smoothly while background radiation changes rapidly). We derive an image formation model and an algorithm to jointly estimate the object's emissivity at each band, and the time-varying object and background temperatures. Experiments with calibrated and uncalibrated emissivities in everyday scenes (e.g., coffee pot heating up, palm print on mirrors dissipating, reflections of moving people), demonstrate robust separation and recovery of temperature fields. We will release code and data upon acceptance. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "Long-wave infrared radiation captured by a thermal camera includes (a) emission from an object governed by its temperature and emissivity, and (b) reflected radiation from the surrounding environment.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Long-wave infrared radiation captured by a thermal camera includes (a) emission from an object governed by its temperature and emissivity, and (b) reflected radiation from the surrounding environment. Separating these components is a long-standing challenge in thermography. Even when using multiple bands, the problem is under-determined without priors on emissivity. This difficulty is amplified in near ambient conditions, where emitted and reflected signals are of comparable magnitude. We present a dual-band video thermography framework that reduces this ambiguity by combining two complementary ideas at a per-pixel level: (i) spectral cues (ratio of emissivity between bands is unknown but fixed), and (ii) temporal cues (object radiation changes smoothly while background radiation changes rapidly). We derive an image formation model and an algorithm to jointly estimate the object's emissivity at each band, and the time-varying object and background temperatures. Experiments with calibrated and uncalibrated emissivities in everyday scenes (e.g., coffee pot heating up, palm print on mirrors dissipating, reflections of moving people), demonstrate robust separation and recovery of temperature fields. We will release code and data upon acceptance. View full details"
+    }
+  ]
+}

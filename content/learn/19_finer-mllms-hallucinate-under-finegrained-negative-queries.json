@@ -1,0 +1,34 @@
+{
+  "slug": "19_finer-mllms-hallucinate-under-finegrained-negative-queries",
+  "title": "FINER: MLLMs Hallucinate under Fine-grained Negative Queries",
+  "authors": "Rui Xiao \u22c5 Sanghwan Kim \u22c5 Yongqin Xian \u22c5 Zeynep Akata \u22c5 Stephan Alaniz",
+  "sourceUrl": "",
+  "date": "Jun 6, 11:45 AM - 1:45 PM",
+  "location": "ExHall F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Multimodal large language models (MLLMs) struggle with hallucinations, particularly with fine-grained queries, a challenge underrepresented by existing benchmarks that focus on coarse image-related questions.",
+      "content": "Multimodal large language models (MLLMs) struggle with hallucinations, particularly with fine-grained queries, a challenge underrepresented by existing benchmarks that focus on coarse image-related questions. We introduce FIne-grained NEgative queRies (FINER), alongside two benchmarks: FINER-CompreCap and FINER-DOCCI. Using FINER, we analyze hallucinations across four settings: multi-object, multi-attribute, multi-relation, and \u201cwhat\u201d questions. Our benchmarks reveal that MLLMs hallucinate when fine-grained mismatches co-occur with genuinely present elements in the image. To address this, we propose FINER-Tuning, leveraging Direct Preference Optimization (DPO) on FINER-inspired data."
+    },
+    {
+      "heading": "Problem",
+      "gist": "FINER addresses a key limitation in current vision systems.",
+      "content": "Multimodal large language models (MLLMs) struggle with hallucinations, particularly with fine-grained queries, a challenge underrepresented by existing benchmarks that focus on coarse image-related questions. We introduce FIne-grained NEgative queRies (FINER), alongside two benchmarks: FINER-CompreCap and FINER-DOCCI. Using FINER, we analyze hallucinations across four settings: multi-object, multi-attribute, multi-relation, and \u201cwhat\u201d questions. Our benchmarks reveal that MLLMs hallucinate when fine-grained mismatches co-occur with genuinely present elements in the image. To address this, we propose FINER-Tuning, leveraging Direct Preference Optimization (DPO) on FINER-inspired data. Finetuning four frontier MLLMs with FINER-Tuning yields up to 24.2% gains (InternVL3.5-14B) on hallucinations from our benchmarks, while simultaneously improving performance on eight existing hallucination suites, and enhancing general multimodal capabilities across six benchmarks. Benchmarks, training data, code and model checkpoints will be released. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "Multimodal large language models (MLLMs) struggle with hallucinations, particularly with fine-grained queries, a challenge underrepresented by existing benchmarks that focus on coarse image-related questions.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Multimodal large language models (MLLMs) struggle with hallucinations, particularly with fine-grained queries, a challenge underrepresented by existing benchmarks that focus on coarse image-related questions. We introduce FIne-grained NEgative queRies (FINER), alongside two benchmarks: FINER-CompreCap and FINER-DOCCI. Using FINER, we analyze hallucinations across four settings: multi-object, multi-attribute, multi-relation, and \u201cwhat\u201d questions. Our benchmarks reveal that MLLMs hallucinate when fine-grained mismatches co-occur with genuinely present elements in the image. To address this, we propose FINER-Tuning, leveraging Direct Preference Optimization (DPO) on FINER-inspired data. Finetuning four frontier MLLMs with FINER-Tuning yields up to 24.2% gains (InternVL3.5-14B) on hallucinations from our benchmarks, while simultaneously improving performance on eight existing hallucination suites, and enhancing general multimodal capabilities across six benchmarks. Benchmarks, training data, code and model checkpoints will be released. View full details"
+    }
+  ]
+}

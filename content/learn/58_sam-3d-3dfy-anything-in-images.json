@@ -1,0 +1,35 @@
+{
+  "slug": "58_sam-3d-3dfy-anything-in-images",
+  "title": "SAM 3D: 3Dfy Anything in Images",
+  "authors": "Xingyu Chen \u22c5 Fu-Jen Chu \u22c5 Pierre Gleize \u22c5 Kevin J Liang \u22c5 Alexander Sax \u22c5 Hao Tang \u22c5 Weiyao Wang \u22c5 Michelle Guo \u22c5 Thibaut Hardin \u22c5 Xiang Li \u22c5 Aohan Lin \u22c5 Jia-Wei Liu \u22c5 Ziqi Ma \u22c5 Anushka Sagar \u22c5 Bowen Song \u22c5 Xiaodong Wang \u22c5 Jianing &quot;Jed&quot; Yang \u22c5 Bowen Zhang \u22c5 Piotr Doll\u00e1r \u22c5 Georgia Gkioxari \u22c5 Matt Feiszli \u22c5 Jitendra Malik",
+  "sourceUrl": "",
+  "date": "Jun 5, 4:00 PM - 6:00 PM",
+  "location": "ExHall A & F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026",
+    "3D"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image.",
+      "content": "We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image. SAM 3D excels in natural images, where occlusion and scene clutter are common and visual recognition cues from context play a larger role. We achieve this with a human- and model-in-the-loop pipeline for annotating object shape, texture, and pose, providing visually grounded 3D reconstruction data at unprecedented scale. We learn from this data in a modern, multi-stage training framework that combines synthetic pretraining with real-world alignment, breaking the 3D \"data barrier\". We obtain significant gains over recent work, with at least a 5 : 1 win rate in human preference tests on real-world objects and scenes."
+    },
+    {
+      "heading": "Problem",
+      "gist": "SAM 3D addresses a key limitation in current vision systems.",
+      "content": "We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image. SAM 3D excels in natural images, where occlusion and scene clutter are common and visual recognition cues from context play a larger role. We achieve this with a human- and model-in-the-loop pipeline for annotating object shape, texture, and pose, providing visually grounded 3D reconstruction data at unprecedented scale. We learn from this data in a modern, multi-stage training framework that combines synthetic pretraining with real-world alignment, breaking the 3D \"data barrier\". We obtain significant gains over recent work, with at least a 5 : 1 win rate in human preference tests on real-world objects and scenes. We will release our code and model weights, an online demo, and a new challenging benchmark for in-the-wild 3D object reconstruction. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "We present SAM 3D, a generative model for visually grounded 3D object reconstruction, predicting geometry, texture, and layout from a single image. SAM 3D excels in natural images, where occlusion and scene clutter are common and visual recognition cues from context play a larger role. We achieve this with a human- and model-in-the-loop pipeline for annotating object shape, texture, and pose, providing visually grounded 3D reconstruction data at unprecedented scale. We learn from this data in a modern, multi-stage training framework that combines synthetic pretraining with real-world alignment, breaking the 3D \"data barrier\". We obtain significant gains over recent work, with at least a 5 : 1 win rate in human preference tests on real-world objects and scenes. We will release our code and model weights, an online demo, and a new challenging benchmark for in-the-wild 3D object reconstruction. View full details"
+    }
+  ]
+}

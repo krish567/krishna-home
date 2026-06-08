@@ -1,0 +1,34 @@
+{
+  "slug": "49_prophy-progressive-physical-alignment-for-dynamic-world-simu",
+  "title": "ProPhy: Progressive Physical Alignment for Dynamic World Simulation",
+  "authors": "Zijun Wang \u22c5 Panwen Hu \u22c5 Jing Wang \u22c5 Terry Jingchen Zhang \u22c5 Yuhao Cheng \u22c5 Long Chen \u22c5 Yiqiang Yan \u22c5 Zutao Jiang \u22c5 Hanhui Li \u22c5 Xiaodan Liang",
+  "sourceUrl": "",
+  "date": "Jun 6, 11:45 AM - 1:45 PM",
+  "location": "ExHall F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Recent advances in video generation have shown remarkable potential for constructing world simulators.",
+      "content": "Recent advances in video generation have shown remarkable potential for constructing world simulators. However, current models still struggle to produce physically consistent results, particularly when handling large-scale or complex dynamics. This limitation arises primarily because existing approaches respond isotropically to physical prompts and neglect the fine-grained alignment between generated content and localized physical cues. To address these challenges, we propose ProPhy, a Progressive Physical Alignment Framework that enables explicit physics-aware conditioning and anisotropic generation. ProPhy employs a two-stage Mixture-of-Physics-Experts (MoPE) mechanism for discriminative physical prior extraction, where Semantic Experts infer semantic-level physical principles from textual descriptions, and Refinement Experts capture token-level physical dynamics."
+    },
+    {
+      "heading": "Problem",
+      "gist": "ProPhy addresses a key limitation in current vision systems.",
+      "content": "Recent advances in video generation have shown remarkable potential for constructing world simulators. However, current models still struggle to produce physically consistent results, particularly when handling large-scale or complex dynamics. This limitation arises primarily because existing approaches respond isotropically to physical prompts and neglect the fine-grained alignment between generated content and localized physical cues. To address these challenges, we propose ProPhy, a Progressive Physical Alignment Framework that enables explicit physics-aware conditioning and anisotropic generation. ProPhy employs a two-stage Mixture-of-Physics-Experts (MoPE) mechanism for discriminative physical prior extraction, where Semantic Experts infer semantic-level physical principles from textual descriptions, and Refinement Experts capture token-level physical dynamics. This mechanism allows the model to learn fine-grained, physics-aware video representations that better reflect underlying physical laws. Furthermore, we introduce a physical alignment strategy that transfers the physical reasoning capabilities of vision-language models (VLMs) into the Refinement Experts, facilitating a more accurate representation of dynamic physical phenomena. Extensive experiments on physics-aware video generation benchmarks demonstrate that ProPhy produces more realistic, dynamic, and physically coherent results than existing state-of-the-art methods. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "Recent advances in video generation have shown remarkable potential for constructing world simulators.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Recent advances in video generation have shown remarkable potential for constructing world simulators. However, current models still struggle to produce physically consistent results, particularly when handling large-scale or complex dynamics. This limitation arises primarily because existing approaches respond isotropically to physical prompts and neglect the fine-grained alignment between generated content and localized physical cues. To address these challenges, we propose ProPhy, a Progressive Physical Alignment Framework that enables explicit physics-aware conditioning and anisotropic generation. ProPhy employs a two-stage Mixture-of-Physics-Experts (MoPE) mechanism for discriminative physical prior extraction, where Semantic Experts infer semantic-level physical principles from textual descriptions, and Refinement Experts capture token-level physical dynamics. This mechanism allows the model to learn fine-grained, physics-aware video representations that better reflect underlying physical laws. Furthermore, we introduce a physical alignment strategy that transfers the physical reasoning capabilities of vision-language models (VLMs) into the Refinement Experts, facilitating a more accurate representation of dynamic physical phenomena. Extensive experiments on physics-aware video generation benchmarks demonstrate that ProPhy produces more realistic, dynamic, and physically coherent results than existing state-of-the-art methods. View full details"
+    }
+  ]
+}

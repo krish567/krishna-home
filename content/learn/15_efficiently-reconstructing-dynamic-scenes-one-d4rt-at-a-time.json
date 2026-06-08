@@ -1,0 +1,34 @@
+{
+  "slug": "15_efficiently-reconstructing-dynamic-scenes-one-d4rt-at-a-time",
+  "title": "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time",
+  "authors": "Chuhan Zhang \u22c5 Guillaume Le Moing \u22c5 Skanda Koppula \u22c5 Ignacio Rocco \u22c5 Liliane Momeni \u22c5 Junyu Xie \u22c5 Shuyang Sun \u22c5 Rahul Sukthankar \u22c5 Jo\u00eblle K. Barral \u22c5 Raia Hadsell \u22c5 Zoubin Ghahramani \u22c5 Andrew Zisserman \u22c5 Junlin Zhang \u22c5 Mehdi S. M. Sajjadi",
+  "sourceUrl": "",
+  "date": "Jun 5, 4:00 PM - 6:00 PM",
+  "location": "ExHall A & F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Understanding and reconstructing the complex geometry and motion of dynamic 4D scenes from video remains a formidable challenge in computer vision.",
+      "content": "Understanding and reconstructing the complex geometry and motion of dynamic 4D scenes from video remains a formidable challenge in computer vision. This paper introduces D4RT, a simple yet powerful feedforward network designed to efficiently solve this task. D4RT utilizes a unified transformer architecture to jointly infer depth, spatio-temporal correspondence, and full camera parameters from a single video. Its core innovation is a novel mechanism that sidesteps the heavy computation of dense, per-frame decoding and the complexity of managing multiple, task-specific decoders. Our unified decoding interface allows the model to independently and efficiently probe the 3D position of any point in space and time."
+    },
+    {
+      "heading": "Problem",
+      "gist": "Efficiently Reconstructing Dynamic Scenes One D4RT at a Time addresses a key limitation in current vision systems.",
+      "content": "Understanding and reconstructing the complex geometry and motion of dynamic 4D scenes from video remains a formidable challenge in computer vision. This paper introduces D4RT, a simple yet powerful feedforward network designed to efficiently solve this task. D4RT utilizes a unified transformer architecture to jointly infer depth, spatio-temporal correspondence, and full camera parameters from a single video. Its core innovation is a novel mechanism that sidesteps the heavy computation of dense, per-frame decoding and the complexity of managing multiple, task-specific decoders. Our unified decoding interface allows the model to independently and efficiently probe the 3D position of any point in space and time. The result is a lightweight and highly scalable method that enables remarkably efficient training and inference. We demonstrate that our approach sets a new state-of-the-art, outperforming previous methods across a wide spectrum of 4D reconstruction tasks. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "This paper introduces D4RT, a simple yet powerful feedforward network designed to efficiently solve this task.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Understanding and reconstructing the complex geometry and motion of dynamic 4D scenes from video remains a formidable challenge in computer vision. This paper introduces D4RT, a simple yet powerful feedforward network designed to efficiently solve this task. D4RT utilizes a unified transformer architecture to jointly infer depth, spatio-temporal correspondence, and full camera parameters from a single video. Its core innovation is a novel mechanism that sidesteps the heavy computation of dense, per-frame decoding and the complexity of managing multiple, task-specific decoders. Our unified decoding interface allows the model to independently and efficiently probe the 3D position of any point in space and time. The result is a lightweight and highly scalable method that enables remarkably efficient training and inference. We demonstrate that our approach sets a new state-of-the-art, outperforming previous methods across a wide spectrum of 4D reconstruction tasks. View full details"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "32_mamma-markerless-accurate-multiperson-motion-acquisition",
+  "title": "MAMMA: Markerless Accurate Multi-person Motion Acquisition",
+  "authors": "Hanz Cuevas Velasquez \u22c5 Anastasios Yiannakidis \u22c5 Soyong Shin \u22c5 Giorgio Becherini \u22c5 Markus H\u00f6schle \u22c5 Joachim Tesch \u22c5 Taylor Obersat \u22c5 Tsvetelina Alexiadis \u22c5 Eni Halilaj \u22c5 Michael J. Black",
+  "sourceUrl": "",
+  "date": "Jun 5, 4:00 PM - 6:00 PM",
+  "location": "ExHall A & F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "We present MAMMA, a markerless motion-capture pipeline that accurately recovers SMPL-X parameters from multi-view video.Traditional motion-capture systems rely on physical markers.",
+      "content": "We present MAMMA, a markerless motion-capture pipeline that accurately recovers SMPL-X parameters from multi-view video.Traditional motion-capture systems rely on physical markers. Although they offer high accuracy, their requirements of specialised hardware, manual marker placement, and extensive post-processing make them costly and time-consuming. Recent learning-based methods attempt to overcome these limitations, but most are designed for single-person capture, rely on sparse keypoints, or struggle with occlusions and physical interactions. In this work, we introduce a method that predicts dense 2D surface landmarks conditioned on segmentation masks, enabling person-specific correspondence estimation even under heavy occlusion. We employ a novel architecture that exploits learnable queries for each landmark."
+    },
+    {
+      "heading": "Problem",
+      "gist": "MAMMA addresses a key limitation in current vision systems.",
+      "content": "We present MAMMA, a markerless motion-capture pipeline that accurately recovers SMPL-X parameters from multi-view video.Traditional motion-capture systems rely on physical markers. Although they offer high accuracy, their requirements of specialised hardware, manual marker placement, and extensive post-processing make them costly and time-consuming. Recent learning-based methods attempt to overcome these limitations, but most are designed for single-person capture, rely on sparse keypoints, or struggle with occlusions and physical interactions. In this work, we introduce a method that predicts dense 2D surface landmarks conditioned on segmentation masks, enabling person-specific correspondence estimation even under heavy occlusion. We employ a novel architecture that exploits learnable queries for each landmark. We demonstrate that our approach can handle complex person--person interaction and offers greater accuracy than existing methods. To train our network, we construct a large, synthetic multi-view dataset combining human motions from diverse sources, including extreme poses, hand motions, and close interactions. Our dataset yields high-variability synthetic sequences with rich body contact and occlusion, and includes SMPL-X ground-truth annotations with dense 2D landmarks.The result is a system capable of accurately capturing human motion without the need for markers. Our approach offers competitive reconstruction quality compared to commercial marker-based motion-capture solutions, without the extensive manual cleanup. Finally, we address the absence of common benchmarks for dense-landmark prediction and markerless motion capture by introducing two evaluation settings built from real multi-view sequences. We will release our dataset, method, code, and model weights for research purposes. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "We present MAMMA, a markerless motion-capture pipeline that accurately recovers SMPL-X parameters from multi-view video.Traditional motion-capture systems rely on physical markers.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "We present MAMMA, a markerless motion-capture pipeline that accurately recovers SMPL-X parameters from multi-view video.Traditional motion-capture systems rely on physical markers. Although they offer high accuracy, their requirements of specialised hardware, manual marker placement, and extensive post-processing make them costly and time-consuming. Recent learning-based methods attempt to overcome these limitations, but most are designed for single-person capture, rely on sparse keypoints, or struggle with occlusions and physical interactions. In this work, we introduce a method that predicts dense 2D surface landmarks conditioned on segmentation masks, enabling person-specific correspondence estimation even under heavy occlusion. We employ a novel architecture that exploits learnable queries for each landmark. We demonstrate that our approach can handle complex person--person interaction and offers greater accuracy than existing methods. To train our network, we construct a large, synthetic multi-view dataset combining human motions from diverse sources, including extreme poses, hand motions, and close interactions. Our dataset yields high-variability synthetic sequences with rich body contact and occlusion, and includes SMPL-X ground-truth annotations with dense 2D landmarks.The result is a system capable of accurately capturing human motion without the need for markers. Our approach offers competitive reconstruction quality compared to commercial marker-based motion-capture solutions, without the extensive manual cleanup. Finally, we address the absence of common benchmarks for dense-landmark prediction and markerless motion capture by introducing two evaluation settings built from real multi-view sequences. We will release our dataset, method, code, and model weights for research purposes. View full details"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "slug": "35_memoryaugmented-scene-understanding-and-exploration-for-open",
+  "title": "Memory-Augmented Scene Understanding and Exploration for Open-World Aerial Object-Goal Navigation",
+  "authors": "Jiacong Zhou \u22c5 Jiaxu Miao \u22c5 Yourun Lin \u22c5 Xianyun Wang \u22c5 Jun Xiao \u22c5 Jun Yu",
+  "sourceUrl": "",
+  "date": "Jun 6, 4:45 PM - 6:45 PM",
+  "location": "ExHall A & F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Aerial object-goal navigation (Aerial ObjectNav) requires an Unmanned Aerial Vehicle (UAV) to navigate to target objects in large-scale outdoor environments using only visual observations and high-level object descriptions, without detailed step-by-step instructions.",
+      "content": "Aerial object-goal navigation (Aerial ObjectNav) requires an Unmanned Aerial Vehicle (UAV) to navigate to target objects in large-scale outdoor environments using only visual observations and high-level object descriptions, without detailed step-by-step instructions. Existing approaches rely on local observations or short-term history, lacking comprehensive scene understanding and efficient spatial exploration strategies, which constrains their navigation capability in complex aerial scenarios. To address these challenges, we propose OctMem-Agent, an octree memory-augmented framework for aerial object-goal navigation. Specifically, we introduce an Adaptive Octree Memory that incrementally aggregates RGB-D observations into a hierarchical 3D representation, capturing both explored regions and unexplored frontiers across large-scale aerial environments. We further propose a Instruction-Guided Memory Query module that extracts task-relevant scene and exploration tokens through instruction-modulated queries."
+    },
+    {
+      "heading": "Problem",
+      "gist": "Memory-Augmented Scene Understanding and Exploration for Open-World Aerial Object-Goal Navigation addresses a key limitation in current vision systems.",
+      "content": "Aerial object-goal navigation (Aerial ObjectNav) requires an Unmanned Aerial Vehicle (UAV) to navigate to target objects in large-scale outdoor environments using only visual observations and high-level object descriptions, without detailed step-by-step instructions. Existing approaches rely on local observations or short-term history, lacking comprehensive scene understanding and efficient spatial exploration strategies, which constrains their navigation capability in complex aerial scenarios. To address these challenges, we propose OctMem-Agent, an octree memory-augmented framework for aerial object-goal navigation. Specifically, we introduce an Adaptive Octree Memory that incrementally aggregates RGB-D observations into a hierarchical 3D representation, capturing both explored regions and unexplored frontiers across large-scale aerial environments. We further propose a Instruction-Guided Memory Query module that extracts task-relevant scene and exploration tokens through instruction-modulated queries. By integrating these tokens with visual observations and language instructions, OctoMem-Agent achieves comprehensive scene understanding and effective spatial exploration for target localization. Extensive experiments on the Aerial ObjectNav benchmark UAV-ON demonstrate that our method achieves a significant 7.5\\% improvement in success rate over existing methods, validating the effectiveness of our design. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "To address these challenges, we propose OctMem-Agent, an octree memory-augmented framework for aerial object-goal navigation.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Aerial object-goal navigation (Aerial ObjectNav) requires an Unmanned Aerial Vehicle (UAV) to navigate to target objects in large-scale outdoor environments using only visual observations and high-level object descriptions, without detailed step-by-step instructions. Existing approaches rely on local observations or short-term history, lacking comprehensive scene understanding and efficient spatial exploration strategies, which constrains their navigation capability in complex aerial scenarios. To address these challenges, we propose OctMem-Agent, an octree memory-augmented framework for aerial object-goal navigation. Specifically, we introduce an Adaptive Octree Memory that incrementally aggregates RGB-D observations into a hierarchical 3D representation, capturing both explored regions and unexplored frontiers across large-scale aerial environments. We further propose a Instruction-Guided Memory Query module that extracts task-relevant scene and exploration tokens through instruction-modulated queries. By integrating these tokens with visual observations and language instructions, OctoMem-Agent achieves comprehensive scene understanding and effective spatial exploration for target localization. Extensive experiments on the Aerial ObjectNav benchmark UAV-ON demonstrate that our method achieves a significant 7.5\\% improvement in success rate over existing methods, validating the effectiveness of our design. View full details"
+    }
+  ]
+}

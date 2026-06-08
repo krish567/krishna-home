@@ -1,0 +1,35 @@
+{
+  "slug": "09_cosmo3d-openworld-promptable-3d-semantic-segmentation-throug",
+  "title": "CoSMo3D: Open-World Promptable 3D Semantic Segmentation through LLM-Guided Canonical Spatial Modeling",
+  "authors": "Li Jin \u22c5 Weikai Chen \u22c5 Yujie Wang \u22c5 Yingda Yin \u22c5 Zeyu HU \u22c5 Runze Zhang \u22c5 Keyang Luo \u22c5 Shengju Qian \u22c5 Xin Wang \u22c5 Xueying Qin",
+  "sourceUrl": "",
+  "date": "Jun 6, 11:45 AM - 1:45 PM",
+  "location": "ExHall F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026",
+    "3D"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "Open-world promptable 3D semantic segmentation remains brittle as semantics are inferred in the input sensor coordinates.",
+      "content": "Open-world promptable 3D semantic segmentation remains brittle as semantics are inferred in the input sensor coordinates. Yet, humans, in contrast, interpret parts via functional roles in a canonical space -- wings extend laterally, handles protrude to the side, and legs support from below. Psychophysical evidence shows that we mentally rotate objects into canonical frames to reveal these roles. To fill this gap, we propose CoSMo3D, which attains canonical space perception by inducing a latent canonical reference frame learned directly from data. By construction, we create a unified canonical dataset through LLM-guided intra- and cross-category alignment, exposing canonical spatial regularities across 200 categories."
+    },
+    {
+      "heading": "Problem",
+      "gist": "CoSMo3D addresses a key limitation in current vision systems.",
+      "content": "Open-world promptable 3D semantic segmentation remains brittle as semantics are inferred in the input sensor coordinates. Yet, humans, in contrast, interpret parts via functional roles in a canonical space -- wings extend laterally, handles protrude to the side, and legs support from below. Psychophysical evidence shows that we mentally rotate objects into canonical frames to reveal these roles. To fill this gap, we propose CoSMo3D, which attains canonical space perception by inducing a latent canonical reference frame learned directly from data. By construction, we create a unified canonical dataset through LLM-guided intra- and cross-category alignment, exposing canonical spatial regularities across 200 categories. By induction, we realize canonicality inside the model through a dual-branch architecture with canonical map anchoring and canonical box calibration, collapsing pose variation and symmetry into a stable canonical embedding. This shift from input pose space to canonical representation yields far more stable and transferable part semantics. Experimental results show that CoSMo3D establishes new state of the art in open-world promptable 3D segmentation. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "Open-world promptable 3D semantic segmentation remains brittle as semantics are inferred in the input sensor coordinates.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "Open-world promptable 3D semantic segmentation remains brittle as semantics are inferred in the input sensor coordinates. Yet, humans, in contrast, interpret parts via functional roles in a canonical space -- wings extend laterally, handles protrude to the side, and legs support from below. Psychophysical evidence shows that we mentally rotate objects into canonical frames to reveal these roles. To fill this gap, we propose CoSMo3D, which attains canonical space perception by inducing a latent canonical reference frame learned directly from data. By construction, we create a unified canonical dataset through LLM-guided intra- and cross-category alignment, exposing canonical spatial regularities across 200 categories. By induction, we realize canonicality inside the model through a dual-branch architecture with canonical map anchoring and canonical box calibration, collapsing pose variation and symmetry into a stable canonical embedding. This shift from input pose space to canonical representation yields far more stable and transferable part semantics. Experimental results show that CoSMo3D establishes new state of the art in open-world promptable 3D segmentation. View full details"
+    }
+  ]
+}

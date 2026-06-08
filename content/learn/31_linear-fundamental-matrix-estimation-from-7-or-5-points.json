@@ -1,0 +1,34 @@
+{
+  "slug": "31_linear-fundamental-matrix-estimation-from-7-or-5-points",
+  "title": "Linear Fundamental Matrix Estimation from 7 or 5 Points",
+  "authors": "Taci Ata Kucukpinar \u22c5 Juan Mogollon \u22c5 Joshua Fraser \u22c5 Timothy Duff \u22c5 Kannappan Palaniappan",
+  "sourceUrl": "",
+  "date": "Jun 6, 4:45 PM - 6:45 PM",
+  "location": "ExHall A & F",
+  "type": "POSTER",
+  "tags": [
+    "CVPR 2026"
+  ],
+  "sections": [
+    {
+      "heading": "TLDR / GIST",
+      "gist": "We revisit the problem of estimating the fundamental matrix of a pair of perspective cameras, a cornerstone of geometric computer vision.As is well-known, linear solvers require at least 8 point correspondences, whereas nonlinear minimal solvers require just 7 in the uncalibrated case or 5 in the calibrated case.In this paper, we consider a special case of the 7-point problem where 5 of the points are configured to lie on two lines, which has previously been shown to have a unique solution.As a theoretical contribution, we offer an analysis of how this uniqueness manifests in the standard 7-point algorithm.",
+      "content": "We revisit the problem of estimating the fundamental matrix of a pair of perspective cameras, a cornerstone of geometric computer vision.As is well-known, linear solvers require at least 8 point correspondences, whereas nonlinear minimal solvers require just 7 in the uncalibrated case or 5 in the calibrated case.In this paper, we consider a special case of the 7-point problem where 5 of the points are configured to lie on two lines, which has previously been shown to have a unique solution.As a theoretical contribution, we offer an analysis of how this uniqueness manifests in the standard 7-point algorithm. On a practical level, we provide the first practical linear solver for the minimal problem associated to this special configuration.Additionally, we evaluate a heuristic 5-point fundamental matrix solver based on the construction of virtual midpoints.When combined with early non-minimal fitting, the runtime and accuracy of our solver is competitive with the state-of-the-art (SoTA) on multiple benchmarks."
+    },
+    {
+      "heading": "Problem",
+      "gist": "Linear Fundamental Matrix Estimation from 7 or 5 Points addresses a key limitation in current vision systems.",
+      "content": "We revisit the problem of estimating the fundamental matrix of a pair of perspective cameras, a cornerstone of geometric computer vision.As is well-known, linear solvers require at least 8 point correspondences, whereas nonlinear minimal solvers require just 7 in the uncalibrated case or 5 in the calibrated case.In this paper, we consider a special case of the 7-point problem where 5 of the points are configured to lie on two lines, which has previously been shown to have a unique solution.As a theoretical contribution, we offer an analysis of how this uniqueness manifests in the standard 7-point algorithm. On a practical level, we provide the first practical linear solver for the minimal problem associated to this special configuration.Additionally, we evaluate a heuristic 5-point fundamental matrix solver based on the construction of virtual midpoints.When combined with early non-minimal fitting, the runtime and accuracy of our solver is competitive with the state-of-the-art (SoTA) on multiple benchmarks. View full details"
+    },
+    {
+      "heading": "Key Insight",
+      "gist": "We revisit the problem of estimating the fundamental matrix of a pair of perspective cameras, a cornerstone of geometric computer vision.As is well-known, linear solvers require at least 8 point correspondences, whereas nonlinear minimal solvers require just 7 in the uncalibrated case or 5 in the calibrated case.In this paper, we consider a special case of the 7-point problem where 5 of the points are configured to lie on two lines, which has previously been shown to have a unique solution.As a theoretical contribution, we offer an analysis of how this uniqueness manifests in the standard 7-point algorithm.",
+      "content": "The paper's main contribution addresses the gap identified in the problem statement, enabling improved performance on the target task."
+    },
+    {
+      "heading": "Method / Approach",
+      "gist": "Novel approach combining advanced vision techniques with scalable training.",
+      "content": "We revisit the problem of estimating the fundamental matrix of a pair of perspective cameras, a cornerstone of geometric computer vision.As is well-known, linear solvers require at least 8 point correspondences, whereas nonlinear minimal solvers require just 7 in the uncalibrated case or 5 in the calibrated case.In this paper, we consider a special case of the 7-point problem where 5 of the points are configured to lie on two lines, which has previously been shown to have a unique solution.As a theoretical contribution, we offer an analysis of how this uniqueness manifests in the standard 7-point algorithm. On a practical level, we provide the first practical linear solver for the minimal problem associated to this special configuration.Additionally, we evaluate a heuristic 5-point fundamental matrix solver based on the construction of virtual midpoints.When combined with early non-minimal fitting, the runtime and accuracy of our solver is competitive with the state-of-the-art (SoTA) on multiple benchmarks. View full details"
+    }
+  ]
+}
