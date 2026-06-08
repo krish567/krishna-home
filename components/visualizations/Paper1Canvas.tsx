@@ -144,7 +144,7 @@ export default function Paper1Infographic() {
       </nav>
 
       {/* ─── SECTION 1: OVERVIEW ─── */}
-      <section id="overview" className="min-h-screen flex flex-col justify-center items-center px-4 py-20 relative overflow-hidden">
+      <section id="overview" className="flex flex-col justify-center items-center px-4 py-16 relative overflow-hidden">
         {/* Background grid */}
         <div className="absolute inset-0" style={{
           backgroundImage: "linear-gradient(#1e293b22 1px, transparent 1px), linear-gradient(90deg, #1e293b22 1px, transparent 1px)",
@@ -197,7 +197,7 @@ export default function Paper1Infographic() {
       </section>
 
       {/* ─── SECTION 2: THE PROBLEM ─── */}
-      <section id="problem" className="min-h-screen flex items-center px-4 py-20">
+      <section id="problem" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
@@ -264,7 +264,7 @@ export default function Paper1Infographic() {
       </section>
 
       {/* ─── SECTION 3: DATASET ─── */}
-      <section id="dataset" className="min-h-screen flex items-center px-4 py-20">
+      <section id="dataset" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
@@ -352,7 +352,7 @@ export default function Paper1Infographic() {
       </section>
 
       {/* ─── SECTION 4: BENCHMARK TASKS ─── */}
-      <section id="tasks" className="min-h-screen flex items-center px-4 py-20">
+      <section id="tasks" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
@@ -429,7 +429,7 @@ export default function Paper1Infographic() {
       </section>
 
       {/* ─── SECTION 5: METHODOLOGY ─── */}
-      <section id="methods" className="min-h-screen flex items-center px-4 py-20">
+      <section id="methods" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
@@ -494,7 +494,7 @@ export default function Paper1Infographic() {
       </section>
 
       {/* ─── SECTION 6: KEY FINDINGS ─── */}
-      <section id="findings" className="min-h-screen flex items-center px-4 py-20">
+      <section id="findings" className="flex items-center px-4 py-16">
         <div className="max-w-6xl mx-auto w-full">
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
