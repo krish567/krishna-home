@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import VizClient from "@/components/visualizations/VizClient";
 
 type ResultsPageProps = {
   params: Promise<{ id: string }>;
@@ -15,7 +15,7 @@ export default async function ResultIdPage({ params }: ResultsPageProps) {
         </Link>
         <h1 className="text-2xl font-bold text-white capitalize">{id.replace(/-/g, " ")}</h1>
       </header>
-      <div id="viz-root" data-paper-id={id} />
+      <VizClient />
     </main>
   );
 }
