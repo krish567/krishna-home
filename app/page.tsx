@@ -17,7 +17,7 @@ const sections = [
   },
   {
     href: "/finance",
-    label: "Finance",
+    label: "Personal Finance Tracker",
     emoji: "💰",
     description: "Financial tracking & projections",
     color: "border-amber-500",

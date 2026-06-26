@@ -7,7 +7,7 @@ export default function FinancePage() {
         <Link href="/" className="text-gray-500 hover:text-gray-300 text-sm mb-2 block">
           ← Home
         </Link>
-        <h1 className="text-2xl font-bold">💰 Finance</h1>
+        <h1 className="text-2xl font-bold">💰 Personal Finance Tracker</h1>
         <p className="text-gray-400 text-sm mt-1">Financial tracking & projections</p>
       </header>
 
