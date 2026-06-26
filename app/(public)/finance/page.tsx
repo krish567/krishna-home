@@ -11,16 +11,21 @@ export default function FinancePage() {
         <p className="text-gray-400 text-sm mt-1">Financial tracking & projections</p>
       </header>
 
-      <div className="card text-center py-16">
-        <p className="text-4xl mb-4">🚧</p>
-        <h2 className="font-semibold text-lg mb-2">Coming soon</h2>
-        <p className="text-gray-400 text-sm">
-          Tell me what you want to track and I'll build it.
-        </p>
-        <p className="text-gray-600 text-xs mt-2">
-          Options: expense tracker, income log, budget categories, net worth
-        </p>
-      </div>
+      <a
+        href="https://kcfin.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card flex items-start gap-4 border-l-4 border-amber-500 hover:border-l-6 transition-all block"
+      >
+        <span className="text-2xl">💸</span>
+        <div className="flex-1">
+          <div className="font-semibold text-lg">kcfin.vercel.app</div>
+          <p className="text-gray-400 text-sm mt-1">
+            Live dashboard — trends, slots, accounts, transactions.
+          </p>
+        </div>
+        <span className="text-gray-500 text-sm self-center">↗</span>
+      </a>
     </main>
   );
 }
