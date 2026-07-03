@@ -23,11 +23,12 @@ const sections = [
     color: "border-green-500",
   },
   {
-    href: "/finance",
+    href: "https://kcfin.vercel.app",
     label: "Finance",
     emoji: "💰",
     description: "Financial tracking & projections",
     color: "border-amber-500",
+    external: true,
   },
 ];
 
@@ -48,6 +49,8 @@ export default function HomePage() {
             <Link
               key={s.href}
               href={s.href}
+              target={s.external ? "_blank" : undefined}
+              rel={s.external ? "noopener noreferrer" : undefined}
               className={`card flex items-start gap-4 block border-l-4 ${s.color} hover:border-l-6 transition-all`}
             >
               <span className="text-2xl">{s.emoji}</span>
