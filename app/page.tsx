@@ -9,6 +9,13 @@ const sections = [
     color: "border-blue-500",
   },
   {
+    href: "/plans",
+    label: "Plans",
+    emoji: "📋",
+    description: "Plans & reviews — drafts, decisions, shipped",
+    color: "border-violet-500",
+  },
+  {
     href: "/track",
     label: "Track",
     emoji: "🎯",

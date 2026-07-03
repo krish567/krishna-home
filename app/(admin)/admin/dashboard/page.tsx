@@ -17,7 +17,7 @@ export default function AdminDashboard() {
   const [authenticated, setAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
   const [pages, setPages] = useState<PageMeta[]>([]);
-  const [tab, setTab] = useState<"learn" | "track" | "finance">("learn");
+  const [tab, setTab] = useState<"learn" | "plans" | "track" | "finance">("learn");
 
   // Learn form state
   const [url, setUrl] = useState("");
@@ -100,7 +100,7 @@ export default function AdminDashboard() {
 
       {/* Tabs */}
       <div className="flex gap-1 mb-6 border-b border-gray-800">
-        {(["learn", "track", "finance"] as const).map((t) => (
+        {(["learn", "plans", "track", "finance"] as const).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -206,6 +206,21 @@ export default function AdminDashboard() {
           <p className="text-gray-600 text-sm mt-1">
             Add a URL or tell me what you want to track.
           </p>
+        </div>
+      )}
+
+      {/* Plans Section */}
+      {tab === "plans" && (
+        <div className="space-y-3">
+          <p className="text-gray-400 text-sm">
+            Manage plans stored in <code className="text-gray-300">content/plans/*.md</code>.
+          </p>
+          <Link
+            href="/admin/dashboard/plans"
+            className="btn inline-block"
+          >
+            Open plans dashboard →
+          </Link>
         </div>
       )}
 
