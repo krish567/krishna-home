@@ -53,8 +53,14 @@ export async function POST(req: NextRequest) {
   }
 
   // Issue session.
+  const nonceBytes = new Uint8Array(16);
+  crypto.getRandomValues(nonceBytes);
+  // base64url without Buffer (works on both Node and Edge runtimes).
+  let nonce = "";
+  for (let i = 0; i < nonceBytes.length; i++) nonce += String.fromCharCode(nonceBytes[i]);
+  nonce = btoa(nonce).replace(/=+$/, "").replace(/\+/g, "-").replace(/\//g, "_");
   const token = await signSessionEdge(
-    { ts: Date.now(), nonce: crypto.randomUUID().replace(/-/g, "") },
+    { ts: Date.now(), nonce },
     secret,
   );
 

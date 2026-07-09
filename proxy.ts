@@ -17,7 +17,7 @@ import { SESSION_COOKIE, verifySessionEdge } from "@/lib/auth";
  *   - We mirror the Node-side helpers in `lib/auth.ts` under `verifySessionEdge`.
  *   - Both must use the same domain-separated secret derivation or signatures diverge.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Hard-list public routes inside the protected namespaces — these are
