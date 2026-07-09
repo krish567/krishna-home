@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/plans";
 
@@ -24,10 +23,10 @@ function LoginForm() {
     fetch("/api/auth-check")
       .then((r) => r.json())
       .then((d) => {
-        if (d.authenticated) router.replace(safeRedirect);
+        if (d.authenticated) window.location.href = safeRedirect;
       })
       .catch(() => {});
-  }, [safeRedirect, router]);
+  }, [safeRedirect]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -41,7 +40,14 @@ function LoginForm() {
     });
 
     if (res.ok) {
-      router.replace(safeRedirect);
+      // Hard navigation (not router.replace) so middleware re-evaluates
+      // the freshly-set cookie without any client-router cache getting
+      // in the way. router.replace alone leaves the browser on /login
+      // until the user manually refreshes, because the App Router's
+      // client cache can hold the "not authenticated" state from the
+      // initial render. window.location.href guarantees a fresh round
+      // trip through the proxy/middleware.
+      window.location.href = safeRedirect;
     } else {
       setError(true);
       setLoading(false);
