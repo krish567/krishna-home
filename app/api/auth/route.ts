@@ -15,7 +15,11 @@ export async function POST(req: NextRequest) {
   }
 
   const password = typeof body.password === "string" ? body.password : "";
-  const expected = process.env.KRISHNA_HOME_SHARED_PASSWORD;
+  // Accept either KRISHNA_HOME_SHARED_PASSWORD (preferred, explicit) or
+  // KH_PASSWORD (short alias). Either sets the shared password for /plans
+  // and /admin sign-in.
+  const expected =
+    process.env.KRISHNA_HOME_SHARED_PASSWORD ?? process.env.KH_PASSWORD;
   const secret = process.env.AUTH_SECRET;
 
   if (!expected || !secret) {
