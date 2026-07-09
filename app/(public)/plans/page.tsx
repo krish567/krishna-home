@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllPlans, PLAN_STATUSES, type PlanStatus, type PlanData } from "@/lib/plans";
+import { LogoutButton } from "@/components/LogoutButton";
 
 export const revalidate = 3600;
 
@@ -117,6 +118,10 @@ export default async function PlansPage({
           {showShipped ? "✓ Showing shipped" : "Show shipped"}
         </Link>
       </header>
+
+      <div className="text-right mb-4">
+        <LogoutButton />
+      </div>
 
       {totalCount === 0 && (
         <div className="text-center py-16 text-slate-500">
