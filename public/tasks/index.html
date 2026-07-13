@@ -5322,6 +5322,34 @@ setupShortcuts();
 // Sweep on boot so anything stale is moved out of the active list.
 if (runArchiveSweep() > 0) saveState();
 renderAll();
+
+/* ---------- URL-based quick add (iOS Shortcuts) ----------
+   Usage: https://krishna-home.vercel.app/track?add=Buy+milk
+   Or via hash: /track#add=Buy%20milk
+   Supports priority: ?add=Buy+milk&priority=high
+   Supports multiple (one per line with %0A): ?add=Task%0AAnother%20task
+   The URL is cleaned after adding so it doesn't re-trigger on refresh. */
+(function handleQuickAdd() {
+  const params = new URLSearchParams(location.search);
+  const hashParams = new URLSearchParams(location.hash.replace(/^#/, ""));
+  const taskText = params.get("add") || hashParams.get("add");
+  if (!taskText) return;
+  const priority = (params.get("priority") || hashParams.get("priority") || "med").toLowerCase();
+  const added = addManyFromText(decodeURIComponent(taskText), priority);
+  if (added) {
+    saveState();
+    renderAll();
+    // Show a brief toast
+    const toast = document.createElement("div");
+    toast.textContent = `✓ Added ${added} task${added > 1 ? "s" : ""}`;
+    toast.style.cssText = "position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:8px 20px;border-radius:999px;font-size:14px;font-weight:600;z-index:9999;animation:toast-in .3s ease;box-shadow:0 4px 20px rgba(0,0,0,.3)";
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+  }
+  // Clean URL so refresh doesn't re-add
+  const cleanUrl = location.origin + location.pathname;
+  history.replaceState(null, "", cleanUrl);
+})();
 </script>
 <!-- ── Mobile bottom tab bar + drawer scrim + FAB ──────────── -->
 <div class="drawer-scrim" id="drawerScrim"></div>
