@@ -11,6 +11,25 @@
   --muted: #64748b;
   --gist-bg: #0c1425;
   --gist-border: #1d4ed8;
+
+  /* shadcn theme tokens */
+  --background: #020617;
+  --foreground: #f1f5f9;
+  --card-background: #0f172a;
+  --card-foreground: #f1f5f9;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent-background: #1e293b;
+  --accent-foreground: #f1f5f9;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border-color: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --ring-offset: #020617;
 }
 
 body {
