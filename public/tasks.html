@@ -1257,6 +1257,7 @@
   /* Bottom tab bar (hidden on desktop) */
   .tabbar { display: none; }
   .drawer-scrim { display: none; }
+  .drawer-close { display: none; }
 
   @media (max-width: 640px) {
     /* Real viewport height on mobile browsers */
@@ -1266,12 +1267,28 @@
     .sidebar-toggle { display: none !important; }
     .topbar { padding-left: 24px; padding-top: calc(16px + env(safe-area-inset-top)); }
 
-    /* Sidebar becomes a drawer, opened by the More tab */
-    .sidebar { padding-top: calc(18px + env(safe-area-inset-top)); z-index: 80; }
+    /* Sidebar becomes a drawer, opened by the More tab.
+       High z-index + forced fixed position so it always overlays content. */
+    .sidebar {
+      padding-top: calc(18px + env(safe-area-inset-top));
+      position: fixed !important; left: -270px; top: 0; bottom: 0; width: 250px;
+      z-index: 210 !important;
+      transition: left .25s ease;
+    }
+    .sidebar.open { left: 0 !important; }
+
+    /* Close (✕) button inside the drawer */
+    .drawer-close {
+      display: flex; align-items: center; justify-content: center;
+      position: absolute; top: calc(14px + env(safe-area-inset-top)); right: 12px;
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+      font-size: 18px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    }
 
     .drawer-scrim {
       display: block;
-      position: fixed; inset: 0; z-index: 70;
+      position: fixed; inset: 0; z-index: 200;
       background: rgba(0,0,0,.45);
       opacity: 0; pointer-events: none;
       transition: opacity .25s ease;
@@ -1283,23 +1300,42 @@
     .task-area { padding: 14px 16px calc(168px + env(safe-area-inset-bottom)); }
     .topbar { padding-left: 20px; padding-right: 16px; }
 
-    /* Floating add bar sits above the tab bar */
+    /* The always-on type window is replaced by a floating + button.
+       The add bar is hidden until the FAB reveals it as a bottom sheet. */
     .add-bar {
+      display: none;
       bottom: calc(66px + env(safe-area-inset-bottom));
       width: calc(100% - 20px);
-      padding: 6px; gap: 6px;
+      padding: 8px; gap: 6px; flex-wrap: wrap;
     }
-    .add-bar input { font-size: 16px; padding: 9px 8px; }   /* 16px = no iOS zoom */
-    .add-bar select { padding: 8px 6px; font-size: 13px; }
-    .add-bar .add { padding: 10px 14px; }
-    .add-bar .paste-btn { padding: 10px 11px; }
+    body.add-open .add-bar { display: flex; animation: sheetUp .24s cubic-bezier(.2,.8,.25,1); }
+    .add-bar input { font-size: 16px; padding: 11px 10px; flex: 1 1 100%; order: -1; }  /* 16px = no iOS zoom */
+    .add-bar select { padding: 9px 8px; font-size: 14px; flex: 1 1 auto; }
+    .add-bar .add { padding: 11px 16px; flex: 1 1 auto; }
+    .add-bar .paste-btn { padding: 11px 12px; }
+
+    /* Floating + button (FAB) — the new entry point for adding a task */
+    .fab {
+      position: fixed; z-index: 74;
+      right: 16px; bottom: calc(78px + env(safe-area-inset-bottom));
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      color: #fff; font-size: 30px; line-height: 1; font-weight: 300;
+      box-shadow: 0 8px 22px -4px var(--accent-glow, rgba(0,0,0,.4)), 0 2px 6px rgba(0,0,0,.3);
+      -webkit-tap-highlight-color: transparent;
+      transition: transform .18s cubic-bezier(.2,.8,.25,1);
+    }
+    .fab:active { transform: scale(.92); }
+    body.add-open .fab { transform: rotate(45deg); }   /* + morphs toward × */
 
     /* Bottom tab bar */
     .tabbar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       position: fixed; left: 0; right: 0; bottom: 0;
-      z-index: 75;
+      z-index: 205;
       background: var(--panel);
       border-top: 1px solid var(--border);
       padding-bottom: env(safe-area-inset-bottom);
@@ -1368,6 +1404,7 @@
 <body>
 <div class="app">
   <aside class="sidebar">
+    <button class="drawer-close" id="drawerClose" aria-label="Close menu">✕</button>
     <div class="brand"><div class="dot"></div><h1>Tasks</h1></div>
 
     <div>
@@ -5286,12 +5323,13 @@ setupShortcuts();
 if (runArchiveSweep() > 0) saveState();
 renderAll();
 </script>
-<!-- ── Mobile bottom tab bar + drawer scrim ─────────────────── -->
+<!-- ── Mobile bottom tab bar + drawer scrim + FAB ──────────── -->
 <div class="drawer-scrim" id="drawerScrim"></div>
+<button class="fab" id="mobileFab" aria-label="Add a task">+</button>
 <nav class="tabbar" id="tabbar" role="tablist" aria-label="Primary">
-  <button class="tab" data-view="today" role="tab"><span class="tab-ico">⭐</span>Today</button>
-  <button class="tab" data-view="scheduled" role="tab"><span class="tab-ico">📅</span>Scheduled</button>
-  <button class="tab" data-view="all" role="tab"><span class="tab-ico">📋</span>All</button>
+  <button class="tab" data-tab="all" role="tab"><span class="tab-ico">📋</span>All</button>
+  <button class="tab" data-tab="today" role="tab"><span class="tab-ico">⭐</span>Today</button>
+  <button class="tab" data-tab="high" role="tab"><span class="tab-ico">🔴</span>High</button>
   <button class="tab" data-more role="tab"><span class="tab-ico">☰</span>More</button>
 </nav>
 
@@ -5307,32 +5345,54 @@ renderAll();
   if (!sidebar || !tabbar) return;
 
   /* ---------- Drawer (opened by the More tab) ---------- */
-  function openDrawer()  { sidebar.classList.add("open");  scrim.classList.add("show");  syncTabs(); }
+  function openDrawer()  { document.body.classList.remove("add-open"); sidebar.classList.add("open");  scrim.classList.add("show");  syncTabs(); }
   function closeDrawer() { sidebar.classList.remove("open"); scrim.classList.remove("show"); syncTabs(); }
   function toggleDrawer(){ sidebar.classList.contains("open") ? closeDrawer() : openDrawer(); }
   scrim.addEventListener("click", closeDrawer);
 
-  /* ---------- Tab wiring ---------- */
-  tabbar.querySelectorAll(".tab[data-view]").forEach((tab) => {
-    tab.addEventListener("click", () => {
-      closeDrawer();
-      document.querySelector('.view-item[data-view="' + tab.dataset.view + '"]')?.click();
-      syncTabs();
-    });
+  /* ---------- Tab wiring: All / Today / High / More ----------
+     Each tab drives the app's own controls — view items + priority
+     pills — so state, storage and rendering stay the app's job. */
+  function priorityPill(p) { return document.querySelector('#priorityFilters .filter-pill[data-priority="' + p + '"]'); }
+  function activePriority() { return document.querySelector('#priorityFilters .filter-pill.active')?.dataset.priority || "all"; }
+
+  function selectTab(kind) {
+    closeDrawer();
+    if (kind === "all")   { document.querySelector('.view-item[data-view="all"]')?.click();   if (activePriority() !== "all")  priorityPill("all")?.click(); }
+    if (kind === "today") { document.querySelector('.view-item[data-view="today"]')?.click(); if (activePriority() !== "all")  priorityPill("all")?.click(); }
+    if (kind === "high")  { document.querySelector('.view-item[data-view="all"]')?.click();   if (activePriority() !== "high") priorityPill("high")?.click(); }
+    syncTabs();
+  }
+  tabbar.querySelectorAll(".tab[data-tab]").forEach((tab) => {
+    tab.addEventListener("click", () => selectTab(tab.dataset.tab));
   });
-  tabbar.querySelector("[data-more]").addEventListener("click", toggleDrawer);
+  const moreBtn = tabbar.querySelector("[data-more]");
+  moreBtn.addEventListener("click", (e) => {
+    // The app has a document-level "click outside closes sidebar" handler.
+    // Stop this click from reaching it, or it would instantly re-close the drawer.
+    e.stopPropagation();
+    toggleDrawer();
+  });
+  document.getElementById("drawerClose")?.addEventListener("click", (e) => { e.stopPropagation(); closeDrawer(); });
 
   function syncTabs() {
     const activeView = document.querySelector(".view-item.active")?.dataset.view;
+    const prio = activePriority();
     const drawerOpen = sidebar.classList.contains("open");
+    const match = {
+      all:   !drawerOpen && activeView === "all"   && prio !== "high",
+      today: !drawerOpen && activeView === "today" && prio !== "high",
+      high:  !drawerOpen && activeView === "all"   && prio === "high",
+    };
     tabbar.querySelectorAll(".tab").forEach((t) => {
       if (t.hasAttribute("data-more")) t.classList.toggle("active", drawerOpen);
-      else t.classList.toggle("active", !drawerOpen && t.dataset.view === activeView);
+      else t.classList.toggle("active", !!match[t.dataset.tab]);
     });
   }
-  // Keep the tab bar in sync when the app re-renders view highlights,
+  // Keep the tab bar in sync when the app re-renders view/priority highlights,
   // and when the sidebar opens/closes by any means.
   new MutationObserver(syncTabs).observe(document.getElementById("viewList"), { attributes: true, subtree: true, attributeFilter: ["class"] });
+  document.getElementById("priorityFilters") && new MutationObserver(syncTabs).observe(document.getElementById("priorityFilters"), { attributes: true, subtree: true, attributeFilter: ["class"] });
   new MutationObserver(() => { scrim.classList.toggle("show", sidebar.classList.contains("open")); syncTabs(); })
     .observe(sidebar, { attributes: true, attributeFilter: ["class"] });
 
@@ -5344,7 +5404,30 @@ renderAll();
 
   syncTabs();
 
-  /* ---------- Touch gestures on task rows ---------- */
+  /* ---------- Floating + button → reveals the add bar as a sheet ---------- */
+  const fab = document.getElementById("mobileFab");
+  const addInput = document.getElementById("addInput");
+  const addBtn = document.getElementById("addBtn");
+  function openAdd()  { document.body.classList.add("add-open"); setTimeout(() => addInput?.focus(), 60); }
+  function closeAdd() { document.body.classList.remove("add-open"); addInput?.blur(); }
+  function toggleAdd(){ document.body.classList.contains("add-open") ? closeAdd() : openAdd(); }
+  fab?.addEventListener("click", toggleAdd);
+  // Enter or the Add button submits (the app clears the input) → collapse the sheet.
+  addBtn?.addEventListener("click", () => setTimeout(closeAdd, 0));
+  addInput?.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") setTimeout(closeAdd, 0);
+    if (e.key === "Escape") closeAdd();
+  });
+  // Tapping the scrim (or opening the drawer) closes the add sheet too.
+  scrim.addEventListener("click", closeAdd);
+  // Tap outside the add bar / FAB while open → close.
+  document.addEventListener("touchstart", (e) => {
+    if (!document.body.classList.contains("add-open")) return;
+    if (e.target.closest(".add-bar") || e.target.closest("#mobileFab") || e.target.closest(".hash-autocomplete")) return;
+    closeAdd();
+  }, { passive: true });
+
+
   const area = document.getElementById("taskArea");
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
   const SWIPE_TRIGGER = 82;   // px to fire an action
