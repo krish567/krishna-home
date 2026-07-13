@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Tasks</title>
+<!-- ── Mobile / PWA ───────────────────────────────────────── -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Tasks">
+<meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a0d16" media="(prefers-color-scheme: dark)">
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%237c9cff"/><path d="M9 16.5 l4.5 4.5 L23 11" stroke="white" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <link rel="apple-touch-icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><rect width="180" height="180" rx="38" fill="%237c9cff"/><path d="M50 93 l25 25 L130 60" stroke="white" stroke-width="18" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
@@ -1238,6 +1246,123 @@
     font-weight: 700;
   }
   .hint-btn:hover { color: var(--text); border-color: var(--accent); }
+</style>
+<style id="mobile-shell">
+  /* ═══════════════════════════════════════════════════════════
+     MOBILE SHELL — layered on top of the desktop app.
+     Everything here is scoped to ≤640px so the desktop view is
+     unchanged. Colors come from the app's own theme tokens.
+     ═══════════════════════════════════════════════════════════ */
+
+  /* Bottom tab bar (hidden on desktop) */
+  .tabbar { display: none; }
+  .drawer-scrim { display: none; }
+
+  @media (max-width: 640px) {
+    /* Real viewport height on mobile browsers */
+    .app { height: 100dvh; }
+
+    /* The More tab replaces the floating hamburger */
+    .sidebar-toggle { display: none !important; }
+    .topbar { padding-left: 24px; padding-top: calc(16px + env(safe-area-inset-top)); }
+
+    /* Sidebar becomes a drawer, opened by the More tab */
+    .sidebar { padding-top: calc(18px + env(safe-area-inset-top)); z-index: 80; }
+
+    .drawer-scrim {
+      display: block;
+      position: fixed; inset: 0; z-index: 70;
+      background: rgba(0,0,0,.45);
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s ease;
+      -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    }
+    .drawer-scrim.show { opacity: 1; pointer-events: auto; }
+
+    /* Give scrolling content room for the add bar + tab bar */
+    .task-area { padding: 14px 16px calc(168px + env(safe-area-inset-bottom)); }
+    .topbar { padding-left: 20px; padding-right: 16px; }
+
+    /* Floating add bar sits above the tab bar */
+    .add-bar {
+      bottom: calc(66px + env(safe-area-inset-bottom));
+      width: calc(100% - 20px);
+      padding: 6px; gap: 6px;
+    }
+    .add-bar input { font-size: 16px; padding: 9px 8px; }   /* 16px = no iOS zoom */
+    .add-bar select { padding: 8px 6px; font-size: 13px; }
+    .add-bar .add { padding: 10px 14px; }
+    .add-bar .paste-btn { padding: 10px 11px; }
+
+    /* Bottom tab bar */
+    .tabbar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: fixed; left: 0; right: 0; bottom: 0;
+      z-index: 75;
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: 0 -6px 22px -8px rgba(0,0,0,.4);
+    }
+    body.theme-glass .tabbar {
+      background: rgba(255,255,255, var(--glass-alpha));
+      -webkit-backdrop-filter: blur(24px) saturate(170%);
+      backdrop-filter: blur(24px) saturate(170%);
+    }
+    .tab {
+      appearance: none; background: transparent; border: none;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 3px; padding: 9px 4px 7px; min-height: 54px;
+      color: var(--muted); font-size: 10.5px; font-weight: 600; letter-spacing: .2px;
+      cursor: pointer; position: relative;
+      -webkit-tap-highlight-color: transparent;
+      transition: color .15s ease;
+    }
+    .tab .tab-ico { font-size: 21px; line-height: 1; }
+    .tab:active { opacity: .6; }
+    .tab.active { color: var(--accent); }
+    .tab.active .tab-ico { transform: translateY(-1px); }
+
+    /* Hide desktop-only affordances */
+    .hint-btn, .shortcuts { display: none !important; }
+
+    /* Floating focus widget clears the add bar + tab bar */
+    .floating-focus { bottom: calc(140px + env(safe-area-inset-bottom)) !important; right: 14px !important; top: auto !important; transform: none !important; }
+    .ff-panel { right: auto; left: 50%; top: auto; bottom: calc(100% + 12px); transform: translateX(-50%); width: min(300px, calc(100vw - 28px)); }
+
+    /* Modals become bottom sheets */
+    .modal-backdrop { align-items: flex-end; }
+    .modal {
+      width: 100% !important; max-width: 100% !important;
+      max-height: 90vh; overflow-y: auto;
+      border-radius: 18px 18px 0 0;
+      padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+      animation: sheetUp .28s cubic-bezier(.2,.8,.25,1);
+    }
+    @keyframes sheetUp { from { transform: translateY(28px); opacity: .6; } to { transform: translateY(0); opacity: 1; } }
+    .modal input[type=text], .modal textarea, .modal select,
+    .modal input[type=date], .modal input[type=number] { font-size: 16px; }
+    .modal-row { flex-wrap: wrap; gap: 8px; }
+    .modal-row button { flex: 1 1 auto; min-height: 46px; }
+    .modal-row .left { flex-basis: 100%; margin: 0 0 4px; }
+
+    /* Bulk bar: keep it usable, don't let it eat the screen */
+    .bulk-bar { max-height: 42vh; overflow-y: auto; padding: 10px 16px; }
+
+    /* Bigger touch targets on task rows */
+    .task-row { padding: 14px 14px; gap: 12px; }
+    .check { width: 24px; height: 24px; }
+    .row-actions { opacity: 1; }              /* no hover on touch — always show */
+    .row-actions button { min-width: 38px; min-height: 34px; }
+    .expand-btn { width: 30px; height: 30px; }
+
+    /* Segmented controls / analytics: single column already handled ≤720 */
+    .analytics-controls { flex-wrap: wrap; gap: 8px; }
+  }
+
+  /* Swipe affordance */
+  .task.swiping { transition: none !important; }
 </style>
 </head>
 <body>
@@ -5160,6 +5285,180 @@ setupShortcuts();
 // Sweep on boot so anything stale is moved out of the active list.
 if (runArchiveSweep() > 0) saveState();
 renderAll();
+</script>
+<!-- ── Mobile bottom tab bar + drawer scrim ─────────────────── -->
+<div class="drawer-scrim" id="drawerScrim"></div>
+<nav class="tabbar" id="tabbar" role="tablist" aria-label="Primary">
+  <button class="tab" data-view="today" role="tab"><span class="tab-ico">⭐</span>Today</button>
+  <button class="tab" data-view="scheduled" role="tab"><span class="tab-ico">📅</span>Scheduled</button>
+  <button class="tab" data-view="all" role="tab"><span class="tab-ico">📋</span>All</button>
+  <button class="tab" data-more role="tab"><span class="tab-ico">☰</span>More</button>
+</nav>
+
+<script>
+/* =========================================================
+   MOBILE SHELL — additive only. Drives the existing app by
+   clicking its real controls; never touches its state/logic.
+========================================================= */
+(function () {
+  const sidebar = document.querySelector(".sidebar");
+  const tabbar  = document.getElementById("tabbar");
+  const scrim   = document.getElementById("drawerScrim");
+  if (!sidebar || !tabbar) return;
+
+  /* ---------- Drawer (opened by the More tab) ---------- */
+  function openDrawer()  { sidebar.classList.add("open");  scrim.classList.add("show");  syncTabs(); }
+  function closeDrawer() { sidebar.classList.remove("open"); scrim.classList.remove("show"); syncTabs(); }
+  function toggleDrawer(){ sidebar.classList.contains("open") ? closeDrawer() : openDrawer(); }
+  scrim.addEventListener("click", closeDrawer);
+
+  /* ---------- Tab wiring ---------- */
+  tabbar.querySelectorAll(".tab[data-view]").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      closeDrawer();
+      document.querySelector('.view-item[data-view="' + tab.dataset.view + '"]')?.click();
+      syncTabs();
+    });
+  });
+  tabbar.querySelector("[data-more]").addEventListener("click", toggleDrawer);
+
+  function syncTabs() {
+    const activeView = document.querySelector(".view-item.active")?.dataset.view;
+    const drawerOpen = sidebar.classList.contains("open");
+    tabbar.querySelectorAll(".tab").forEach((t) => {
+      if (t.hasAttribute("data-more")) t.classList.toggle("active", drawerOpen);
+      else t.classList.toggle("active", !drawerOpen && t.dataset.view === activeView);
+    });
+  }
+  // Keep the tab bar in sync when the app re-renders view highlights,
+  // and when the sidebar opens/closes by any means.
+  new MutationObserver(syncTabs).observe(document.getElementById("viewList"), { attributes: true, subtree: true, attributeFilter: ["class"] });
+  new MutationObserver(() => { scrim.classList.toggle("show", sidebar.classList.contains("open")); syncTabs(); })
+    .observe(sidebar, { attributes: true, attributeFilter: ["class"] });
+
+  // Close the drawer after picking a project (rename/archive keep it open — they open modals).
+  document.getElementById("projectList")?.addEventListener("click", (e) => {
+    if (e.target.closest("[data-act=rename]") || e.target.closest(".archive-projects-header")) return;
+    if (e.target.closest(".nav-item")) setTimeout(closeDrawer, 0);
+  });
+
+  syncTabs();
+
+  /* ---------- Touch gestures on task rows ---------- */
+  const area = document.getElementById("taskArea");
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const SWIPE_TRIGGER = 82;   // px to fire an action
+  const LONG_PRESS_MS = 480;
+  let g = null;               // active gesture
+  let suppressClick = false;  // swallow the synthetic tap after long-press
+
+  function selectionMode() {
+    return document.getElementById("bulkBar")?.classList.contains("show");
+  }
+  function resetTask(task) {
+    task.classList.remove("swiping");
+    task.style.transform = "";
+    task.style.boxShadow = "";
+    task.style.opacity = "";
+    task.style.transition = "";
+  }
+  function dispatchSelect(task) {
+    // Re-use the app's own multi-select path (Ctrl/Cmd-click on mousedown-capture).
+    task.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, cancelable: true, ctrlKey: true }));
+  }
+
+  area?.addEventListener("touchstart", (e) => {
+    if (e.touches.length !== 1) { g = null; return; }
+    const task = e.target.closest(".task");
+    if (!task) return;
+    // Let real controls and the subtasks area work normally.
+    if (e.target.closest(".row-actions") || e.target.closest(".expand-btn") ||
+        e.target.closest(".subtasks") || e.target.closest(".check") ||
+        e.target.closest("button") || e.target.isContentEditable) {
+      g = null; return;
+    }
+    const t = e.touches[0];
+    g = { task, x0: t.clientX, y0: t.clientY, dx: 0, dy: 0, mode: "pending", lp: null };
+    g.lp = setTimeout(() => {
+      if (!g || g.mode !== "pending") return;
+      g.mode = "longpress";
+      if (navigator.vibrate) navigator.vibrate(12);
+      dispatchSelect(g.task);
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 600);
+    }, LONG_PRESS_MS);
+  }, { passive: true });
+
+  area?.addEventListener("touchmove", (e) => {
+    if (!g) return;
+    const t = e.touches[0];
+    g.dx = t.clientX - g.x0;
+    g.dy = t.clientY - g.y0;
+    if (g.mode === "pending") {
+      if (Math.abs(g.dx) > 12 && Math.abs(g.dx) > Math.abs(g.dy) * 1.3) {
+        g.mode = "swipe"; clearTimeout(g.lp); g.task.classList.add("swiping");
+      } else if (Math.abs(g.dy) > 12) {
+        g.mode = "scroll"; clearTimeout(g.lp); g = null; return;   // let the list scroll
+      }
+    }
+    if (g && g.mode === "swipe") {
+      e.preventDefault();
+      const dx = clamp(g.dx, -150, 150);
+      g.task.style.transform = "translateX(" + dx + "px)";
+      g.task.style.boxShadow = dx > 0
+        ? "inset 6px 0 0 var(--ok)"
+        : (dx < 0 ? "inset -6px 0 0 var(--danger)" : "");
+    }
+  }, { passive: false });
+
+  area?.addEventListener("touchend", (e) => {
+    if (!g) return;
+    clearTimeout(g.lp);
+    const gg = g; g = null;
+
+    if (gg.mode === "longpress") { e.preventDefault(); return; }
+
+    // Tap while in selection mode → toggle this task's selection.
+    if (gg.mode === "pending" && selectionMode()) {
+      e.preventDefault();
+      dispatchSelect(gg.task);
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 400);
+      return;
+    }
+
+    if (gg.mode !== "swipe") return;
+    const task = gg.task;
+    if (gg.dx > SWIPE_TRIGGER) {
+      // Swipe right → toggle done (animate the card off first).
+      task.style.transition = "transform .18s ease, opacity .18s ease";
+      task.style.transform = "translateX(115%)";
+      task.style.opacity = "0";
+      setTimeout(() => task.querySelector("[data-act=toggle]")?.click(), 165);
+    } else if (gg.dx < -SWIPE_TRIGGER) {
+      // Swipe left → delete (uses the app's own confirm flow).
+      resetTask(task);
+      task.querySelector("[data-act=delete]")?.click();
+    } else {
+      task.style.transition = "transform .18s ease, box-shadow .18s ease";
+      task.style.transform = "";
+      task.style.boxShadow = "";
+      setTimeout(() => resetTask(task), 190);
+    }
+  }, { passive: false });
+
+  // Swallow the synthetic click that follows a long-press / select tap.
+  area?.addEventListener("click", (e) => {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); suppressClick = false; }
+  }, true);
+
+  /* ---------- PWA service worker ---------- */
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+})();
 </script>
 </body>
 </html>
