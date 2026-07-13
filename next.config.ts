@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/track",
-        destination: "/tasks.html",
+        destination: "/tasks/index.html",
       },
     ];
   },
