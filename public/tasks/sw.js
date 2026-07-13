@@ -3,10 +3,10 @@
    fail the install; the fetch handler caches everything else opportunistically. */
 const CACHE = "tasks-mobile-v2";
 const CORE = [
-  "./index.html",
-  "./manifest.webmanifest",
-  "./icon-192.png",
-  "./icon-512.png"
+  "/track",
+  "/track/manifest.webmanifest",
+  "/track/icon-192.png",
+  "/track/icon-512.png"
 ];
 
 self.addEventListener("install", (e) => {
@@ -33,7 +33,7 @@ self.addEventListener("fetch", (e) => {
   // always reach the user; fall back to cache only when offline.
   const isDoc = req.mode === "navigate" ||
     req.destination === "document" ||
-    req.url.includes("tasks-mobile.html");
+    req.url.includes("/track");
   if (isDoc) {
     e.respondWith(
       fetch(req).then((res) => {
