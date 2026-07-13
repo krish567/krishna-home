@@ -19,7 +19,7 @@ const sections = [
     href: "/track",
     label: "Track",
     emoji: "🎯",
-    description: "Todos, goals, habits — iterative personal projects",
+    description: "Task manager, focus timer & analytics",
     color: "border-green-500",
   },
   {
